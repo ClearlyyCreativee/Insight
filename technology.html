@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technology &amp; Reporting – Insight Cargo Solutions | Real-Time Cargo Intelligence</title>
+  <meta name="description" content="Insight Cargo Solutions uses a proprietary digital platform — live dashboards, GPS-stamped photographic evidence, mobile inspection app, and automated real-time reporting." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.insightcargosolutions.co.za/technology.html" />
+  <meta property="og:title"       content="Technology &amp; Reporting – Insight Cargo Solutions" />
+  <meta property="og:description" content="Real-time cargo intelligence. Live dashboards, GPS evidence, mobile inspections." />
+  <meta property="og:url"         content="https://www.insightcargosolutions.co.za/technology.html" />
+  <meta property="og:type"        content="website" />
+  <meta name="theme-color" id="themeColorMeta" content="#162D33" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    /* Animated icon wrapper always visible, no extra opacity trick */
+    .tech-icon-anim { display:flex; align-items:center; height:56px; margin-bottom:1.25rem; }
+    .tech-icon-anim svg { overflow: visible; }
+
+    /* Card 1 — Dashboard: bars pulse height */
+    .icon-dashboard .bar { transform-origin: bottom center; }
+    .icon-dashboard .bar:nth-child(1) { animation: dashBar 1.8s ease-in-out infinite 0s;    }
+    .icon-dashboard .bar:nth-child(2) { animation: dashBar 2.1s ease-in-out infinite 0.25s; }
+    .icon-dashboard .bar:nth-child(3) { animation: dashBar 1.6s ease-in-out infinite 0.5s;  }
+    .icon-dashboard .bar:nth-child(4) { animation: dashBar 2.3s ease-in-out infinite 0.75s; }
+    .icon-dashboard .bar:nth-child(5) { animation: dashBar 1.9s ease-in-out infinite 0.1s;  }
+    @keyframes dashBar {
+      0%,100% { transform:scaleY(0.35); opacity:0.45; }
+      50%      { transform:scaleY(1);    opacity:1;    }
+    }
+
+    /* Card 2 — SITREP: lines scan in; dot blinks */
+    .icon-sitrep .blink-dot { animation: blinkDot 1.2s ease-in-out infinite; }
+    .icon-sitrep .scan-line {
+      stroke-dasharray:50; stroke-dashoffset:50;
+      animation: scanFill 2.2s ease-out infinite;
+    }
+    .icon-sitrep .scan-line:nth-child(2){animation-delay:.45s}
+    .icon-sitrep .scan-line:nth-child(3){animation-delay:.9s}
+    @keyframes blinkDot { 0%,100%{opacity:1;r:3.5} 50%{opacity:0.15;r:2} }
+    @keyframes scanFill {
+      0%   { stroke-dashoffset:50; opacity:0; }
+      15%  { opacity:1; }
+      65%  { stroke-dashoffset:0; }
+      100% { stroke-dashoffset:0; opacity:0.25; }
+    }
+
+    /* Card 3 — GPS: pin bounces, rings expand */
+    .icon-gps .pin-body { animation: pinBounce 2.4s cubic-bezier(.16,1,.3,1) infinite; transform-origin:bottom center; }
+    .icon-gps .gps-ring { opacity:0; animation:gpsRing 2.4s ease-out infinite; transform-origin:40px 46px; }
+    .icon-gps .gps-ring:nth-child(2){animation-delay:.55s}
+    .icon-gps .gps-ring:nth-child(3){animation-delay:1.1s}
+    @keyframes pinBounce { 0%,75%,100%{transform:translateY(0)} 38%{transform:translateY(-7px)} 60%{transform:translateY(-3px)} }
+    @keyframes gpsRing   { 0%{transform:scale(.2);opacity:.9;stroke-width:2} 80%{transform:scale(2);opacity:0} 100%{opacity:0} }
+
+    /* Card 4 — Mobile: scan line sweeps; tap ripple */
+    .icon-mobile .screen-scan { animation: mScan 2s linear infinite; }
+    .icon-mobile .tap-dot     { animation: tapPulse 2s ease-in-out infinite 0.9s; }
+    @keyframes mScan    { 0%{transform:translateY(0);opacity:1} 85%{transform:translateY(28px);opacity:.7} 100%{transform:translateY(0);opacity:0} }
+    @keyframes tapPulse { 0%,100%{r:2;opacity:0} 20%{r:2;opacity:1} 60%{r:6;opacity:0} }
+
+    /* Card 5 — EDI: packets travel left→right */
+    .icon-edi .connect-line { stroke-dasharray:56;stroke-dashoffset:56; animation:lineGrow 1.2s ease-out forwards; }
+    .icon-edi .data-packet  { animation:dataFlow 2.5s ease-in-out infinite; }
+    .icon-edi .data-packet:nth-child(3){animation-delay:.7s}
+    .icon-edi .data-packet:nth-child(4){animation-delay:1.4s}
+    @keyframes lineGrow  { to{stroke-dashoffset:0} }
+    @keyframes dataFlow  { 0%{transform:translateX(-26px);opacity:0} 15%{opacity:1} 85%{opacity:1} 100%{transform:translateX(26px);opacity:0} }
+
+    /* Card 6 — Audit: checkmarks draw sequentially */
+    .icon-audit .check-item   { stroke-dasharray:18;stroke-dashoffset:18; animation:checkDraw 2.4s ease-in-out infinite; }
+    .icon-audit .check-circle { animation:circleOn 2.4s ease-in-out infinite; }
+    .icon-audit .check-item:nth-child(2),
+    .icon-audit .check-circle:nth-child(1) { animation-delay:.55s }
+    .icon-audit .check-item:nth-child(4),
+    .icon-audit .check-circle:nth-child(3) { animation-delay:1.1s }
+    @keyframes checkDraw  { 0%,100%{stroke-dashoffset:18;opacity:0} 12%{stroke-dashoffset:18;opacity:1} 45%,75%{stroke-dashoffset:0;opacity:1} 92%{opacity:0.2} }
+    @keyframes circleOn   { 0%,100%{fill-opacity:0} 12%,80%{fill-opacity:.15} 95%{fill-opacity:.05} }
+  </style>
+
+  <script>(function(){var t=localStorage.getItem('insight-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
+</head>
+<body>
+
+  <div id="cursor" aria-hidden="true"><div class="dot"></div><div class="ring"></div></div>
+
+  <div class="bg-canvas" aria-hidden="true">
+    <svg viewBox="0 0 1440 810" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <path d="M1060 360 C1085 348 1115 350 1128 368 C1141 386 1135 415 1118 428 Z" fill="rgba(242,240,236,0.03)" />
+      <path class="route-path" d="M210 195 Q580 60 940 185" fill="none" stroke="rgba(242,240,236,0.35)" stroke-width="0.7" pathLength="1"/>
+      <path class="route-path" d="M672 148 Q750 185 810 190 Q870 195 940 185" fill="none" stroke="rgba(242,240,236,0.3)" stroke-width="0.6" pathLength="1"/>
+      <circle class="route-node" cx="210" cy="195" r="3" fill="rgba(232,99,26,0.85)"/>
+      <circle class="route-node" cx="940" cy="185" r="3" fill="rgba(232,99,26,0.85)"/>
+      <line x1="0" y1="405" x2="1440" y2="405" stroke="rgba(242,240,236,0.04)" stroke-width="0.5"/>
+    </svg>
+  </div>
+  <div class="bg-noise" aria-hidden="true"></div>
+  <div class="accent-bar" aria-hidden="true"></div>
+
+  <div id="app" class="page">
+
+    <!-- HEADER -->
+    <header>
+      <div class="logo-zone">
+        <a href="index.html" class="logo-link" aria-label="Insight Cargo Solutions — Home">
+          <img src="assets/img/Logo-White.svg" alt="Insight Cargo Solutions" class="logo-dark-mode" />
+          <img src="assets/img/Logo-Dark.svg"  alt="Insight Cargo Solutions" class="logo-light-mode" />
+        </a>
+      </div>
+      <div class="header-right">
+        <nav class="nav-desktop" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <span class="nav-item--has-dropdown">
+            <a href="services.html" aria-expanded="false">Services</a>
+            <div class="nav-dropdown" role="menu">
+              <a href="container-reefer.html" role="menuitem">Container &amp; Reefer Cargo</a>
+              <a href="break-bulk.html"       role="menuitem">Break Bulk &amp; Project Cargo</a>
+              <a href="dry-bulk.html"         role="menuitem">Dry Bulk Cargo</a>
+              <a href="steel-coils.html"      role="menuitem">Steel, Coils &amp; Bagged Cargo</a>
+              <a href="roro.html"             role="menuitem">Ro-Ro Vehicle Inspections</a>
+              <a href="inspections.html"      role="menuitem">Inspections, Surveys &amp; Tally</a>
+            </div>
+          </span>
+          <a href="technology.html" class="is-active">Technology</a>
+          <a href="team.html">Team</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <button class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm0 16a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1Zm10-6a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1ZM4 12a1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1Zm14.95 5.364a1 1 0 0 1-1.414 0l-.707-.707a1 1 0 1 1 1.414-1.414l.707.707a1 1 0 0 1 0 1.414ZM7.172 7.172a1 1 0 0 1-1.414 0l-.707-.707A1 1 0 0 1 6.465 5.05l.707.707a1 1 0 0 1 0 1.415Zm11.314-1.415a1 1 0 0 1 0 1.415l-.707.707a1 1 0 1 1-1.414-1.415l.707-.707a1 1 0 0 1 1.414 0ZM6.465 18.95a1 1 0 0 1 0-1.414l.707-.707a1 1 0 1 1 1.414 1.414l-.707.707a1 1 0 0 1-1.414 0ZM12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7Z"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMobile" aria-label="Open navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <nav class="nav-mobile" id="navMobile" aria-label="Mobile navigation" aria-hidden="true">
+      <button class="nav-mobile__close" id="navClose" aria-label="Close navigation">✕</button>
+      <a href="index.html"      data-nav-link>Home</a>
+      <a href="about.html"      data-nav-link>About</a>
+      <a href="services.html"   data-nav-link>Services</a>
+      <a href="technology.html" data-nav-link class="is-active">Technology</a>
+      <a href="team.html"       data-nav-link>Team</a>
+      <a href="contact.html"    data-nav-link>Contact</a>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <p class="page-hero__eyebrow"><span class="page-hero__eyebrow-line"></span>Digital Platform</p>
+      <h1 class="page-hero__title">Real-Time<br><em>Cargo</em> Intelligence.</h1>
+      <p class="page-hero__sub">
+        Our proprietary digital platform gives you live visibility into every operation —
+        GPS-stamped evidence, automated reporting, and mobile inspection tools that sync
+        instantly to the cloud.
+      </p>
+    </section>
+
+    <!-- PLATFORM OVERVIEW -->
+    <section class="section">
+      <p class="section__overline reveal">The Platform</p>
+      <div class="story-grid">
+        <div class="reveal" data-delay="1">
+          <h2 class="section__title">Insight at your<br><em>fingertips.</em></h2>
+          <p class="section__lead" style="margin-top:1rem;">
+            We built our own technology because off-the-shelf solutions couldn't meet the
+            precision standards our clients demand. Every feature is designed around one
+            principle: give our clients total, real-time confidence in their cargo.
+          </p>
+          <p style="font-family:var(--font-body);font-weight:300;font-size:1rem;line-height:1.8;color:var(--muted);margin-top:1.25rem;max-width:520px;">
+            From the moment an operation begins, your dedicated dashboard tracks every
+            movement, every inspection record, and every SITREP — accessible anywhere,
+            on any device.
+          </p>
+        </div>
+        <div class="reveal reveal--right" data-delay="2">
+          <div class="story-pull">
+            <p class="story-pull__quote">"Real-time SITREPs every 4 hours. GPS &amp; time-stamped photographic evidence. Instant cloud sync."</p>
+            <span class="story-pull__attr">— Insight Technology Platform</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECH FEATURES GRID -->
+    <section class="section section--alt">
+      <p class="section__overline reveal">Platform Features</p>
+      <h2 class="section__title reveal" data-delay="1">Built for Precision</h2>
+      <div class="tech-features" style="margin-top:3rem;">
+
+        <!-- ── 01 Live Dashboards ─────────────────────────────────────────── -->
+        <div class="tech-feature reveal" data-delay="1">
+          <div class="tech-feature__num">01</div>
+          <div class="tech-icon-anim" aria-hidden="true">
+            <svg width="86" height="48" viewBox="0 0 86 48" class="icon-dashboard">
+              <rect x="1" y="1" width="84" height="42" rx="3" fill="none" stroke="rgba(232,99,26,0.3)" stroke-width="1"/>
+              <rect class="bar" x="8"  y="12" width="9"  height="22" fill="rgba(232,99,26,0.8)" rx="1"/>
+              <rect class="bar" x="21" y="20" width="9"  height="14" fill="rgba(232,99,26,0.6)" rx="1"/>
+              <rect class="bar" x="34" y="7"  width="9"  height="27" fill="rgba(232,99,26,1)"   rx="1"/>
+              <rect class="bar" x="47" y="16" width="9"  height="18" fill="rgba(232,99,26,0.7)" rx="1"/>
+              <rect class="bar" x="60" y="11" width="9"  height="23" fill="rgba(232,99,26,0.85)" rx="1"/>
+              <circle cx="80" cy="6" r="3" fill="#E8631A">
+                <animate attributeName="opacity" values="1;0.15;1" dur="1.1s" repeatCount="indefinite"/>
+              </circle>
+            </svg>
+          </div>
+          <h3 class="tech-feature__title">Live Client Dashboards</h3>
+          <p class="tech-feature__desc">A dedicated portal for every client showing real-time operation status, cargo movements, inspection records, and SITREP summaries — updated continuously throughout the operation.</p>
+        </div>
+
+        <!-- ── 02 SITREP Reports ───────────────────────────────────────────── -->
+        <div class="tech-feature reveal" data-delay="2">
+          <div class="tech-feature__num">02</div>
+          <div class="tech-icon-anim" aria-hidden="true">
+            <svg width="86" height="48" viewBox="0 0 86 48" class="icon-sitrep">
+              <rect x="2" y="2" width="58" height="44" rx="2" fill="none" stroke="rgba(232,99,26,0.28)" stroke-width="1"/>
+              <line x1="10" y1="13" x2="54" y2="13" class="scan-line" stroke="rgba(232,99,26,0.85)" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="10" y1="23" x2="46" y2="23" class="scan-line" stroke="rgba(232,99,26,0.65)" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="10" y1="33" x2="50" y2="33" class="scan-line" stroke="rgba(232,99,26,0.75)" stroke-width="1.8" stroke-linecap="round"/>
+              <rect x="66" y="4"  width="18" height="10" rx="2" fill="rgba(232,99,26,0.12)" stroke="rgba(232,99,26,0.5)" stroke-width="0.8"/>
+              <circle class="blink-dot" cx="70" cy="9" r="3.5" fill="#E8631A"/>
+              <text x="75" y="12.5" fill="rgba(232,99,26,0.85)" font-size="4.5" font-family="monospace" font-weight="bold">LVE</text>
+            </svg>
+          </div>
+          <h3 class="tech-feature__title">Real-Time SITREP Reports</h3>
+          <p class="tech-feature__desc">Automated situation reports every 4 hours — tonnage handled, equipment performance, weather impact, workforce status, and key observations from our on-site team.</p>
+        </div>
+
+        <!-- ── 03 GPS Evidence ────────────────────────────────────────────── -->
+        <div class="tech-feature reveal" data-delay="3">
+          <div class="tech-feature__num">03</div>
+          <div class="tech-icon-anim" aria-hidden="true">
+            <svg width="86" height="56" viewBox="0 0 86 56" class="icon-gps">
+              <!-- ripple rings centred at pin base -->
+              <circle cx="43" cy="48" r="5"  class="gps-ring" fill="none" stroke="rgba(232,99,26,0.75)" stroke-width="1.5"/>
+              <circle cx="43" cy="48" r="5"  class="gps-ring" fill="none" stroke="rgba(232,99,26,0.5)"  stroke-width="1.2"/>
+              <circle cx="43" cy="48" r="5"  class="gps-ring" fill="none" stroke="rgba(232,99,26,0.3)"  stroke-width="1"/>
+              <!-- Pin shape -->
+              <g class="pin-body">
+                <path d="M43 6 C35 6 29 12 29 20 C29 30 43 48 43 48 C43 48 57 30 57 20 C57 12 51 6 43 6Z" fill="rgba(232,99,26,0.88)"/>
+                <circle cx="43" cy="20" r="6" fill="rgba(15,31,36,0.55)"/>
+                <circle cx="43" cy="20" r="2.5" fill="rgba(232,99,26,0.7)"/>
+              </g>
+            </svg>
+          </div>
+          <h3 class="tech-feature__title">GPS &amp; Time-Stamped Photos</h3>
+          <p class="tech-feature__desc">Every photo captured by our inspectors is automatically tagged with GPS coordinates and a precise timestamp — creating an irrefutable, court-admissible evidence chain for every cargo event.</p>
+        </div>
+
+        <!-- ── 04 Mobile App ───────────────────────────────────────────────── -->
+        <div class="tech-feature reveal" data-delay="4">
+          <div class="tech-feature__num">04</div>
+          <div class="tech-icon-anim" aria-hidden="true">
+            <svg width="86" height="56" viewBox="0 0 86 56" class="icon-mobile">
+              <!-- Phone outline -->
+              <rect x="24" y="2" width="38" height="52" rx="5" fill="none" stroke="rgba(232,99,26,0.38)" stroke-width="1.2"/>
+              <!-- Screen -->
+              <rect x="28" y="9" width="30" height="36" rx="1" fill="rgba(232,99,26,0.06)"/>
+              <!-- Home bar -->
+              <rect x="36" y="47" width="14" height="2.5" rx="1.25" fill="rgba(232,99,26,0.3)"/>
+              <!-- Scan line (vertical sweep) -->
+              <line x1="28" y1="11" x2="58" y2="11" class="screen-scan" stroke="rgba(232,99,26,0.85)" stroke-width="1.8" stroke-linecap="round"/>
+              <!-- Mini bar chart inside screen -->
+              <rect x="31" y="31" width="4" height="10" fill="rgba(232,99,26,0.45)" rx="0.5"/>
+              <rect x="37" y="27" width="4" height="14" fill="rgba(232,99,26,0.7)"  rx="0.5"/>
+              <rect x="43" y="33" width="4" height="8"  fill="rgba(232,99,26,0.4)"  rx="0.5"/>
+              <rect x="49" y="29" width="4" height="12" fill="rgba(232,99,26,0.6)"  rx="0.5"/>
+              <!-- Tap dot -->
+              <circle cx="43" cy="20" class="tap-dot" fill="rgba(232,99,26,0.9)" r="2"/>
+            </svg>
+          </div>
+          <h3 class="tech-feature__title">Mobile Inspection App</h3>
+          <p class="tech-feature__desc">Our proprietary mobile app enables surveyors to capture damage assessments, serial numbers, condition reports, and digital checklists in the field — syncing instantly to the cloud.</p>
+        </div>
+
+        <!-- ── 05 EDI Integration ─────────────────────────────────────────── -->
+        <div class="tech-feature reveal" data-delay="5">
+          <div class="tech-feature__num">05</div>
+          <div class="tech-icon-anim" aria-hidden="true">
+            <svg width="86" height="48" viewBox="0 0 86 48" class="icon-edi">
+              <!-- Left node -->
+              <rect x="2"  y="14" width="18" height="20" rx="2" fill="rgba(232,99,26,0.1)" stroke="rgba(232,99,26,0.5)" stroke-width="1"/>
+              <text x="11" y="27" text-anchor="middle" fill="rgba(232,99,26,0.85)" font-size="6.5" font-family="monospace" font-weight="bold">SRC</text>
+              <!-- Right node -->
+              <rect x="66" y="14" width="18" height="20" rx="2" fill="rgba(232,99,26,0.1)" stroke="rgba(232,99,26,0.5)" stroke-width="1"/>
+              <text x="75" y="27" text-anchor="middle" fill="rgba(232,99,26,0.85)" font-size="6.5" font-family="monospace" font-weight="bold">EDI</text>
+              <!-- Connection line -->
+              <line x1="20" y1="24" x2="66" y2="24" class="connect-line" stroke="rgba(232,99,26,0.28)" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Packets -->
+              <rect class="data-packet" x="29" y="19" width="14" height="10" rx="1.5" fill="rgba(232,99,26,0.8)"/>
+              <rect class="data-packet" x="29" y="19" width="14" height="10" rx="1.5" fill="rgba(232,99,26,0.65)"/>
+              <rect class="data-packet" x="29" y="19" width="14" height="10" rx="1.5" fill="rgba(232,99,26,0.5)"/>
+            </svg>
+          </div>
+          <h3 class="tech-feature__title">Automated EDI Integration</h3>
+          <p class="tech-feature__desc">Direct electronic data interchange with shipping lines, terminals, and logistics platforms. Cargo status updates pushed automatically — eliminating manual data entry and reducing errors.</p>
+        </div>
+
+        <!-- ── 06 Audit Trail ─────────────────────────────────────────────── -->
+        <div class="tech-feature reveal" data-delay="6">
+          <div class="tech-feature__num">06</div>
+          <div class="tech-icon-anim" aria-hidden="true">
+            <svg width="86" height="56" viewBox="0 0 86 56" class="icon-audit">
+              <!-- Row 1 -->
+              <circle class="check-circle" cx="12" cy="10" r="7" fill="rgba(232,99,26,0.12)" stroke="rgba(232,99,26,0.4)" stroke-width="1"/>
+              <polyline class="check-item" points="8,10 11,13 17,7" fill="none" stroke="rgba(232,99,26,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="26" y="7"  width="54" height="4" rx="2" fill="rgba(232,99,26,0.22)"/>
+              <rect x="26" y="13" width="38" height="2.5" rx="1.25" fill="rgba(232,99,26,0.12)"/>
+              <!-- Row 2 -->
+              <circle class="check-circle" cx="12" cy="28" r="7" fill="rgba(232,99,26,0.12)" stroke="rgba(232,99,26,0.4)" stroke-width="1"/>
+              <polyline class="check-item" points="8,28 11,31 17,25" fill="none" stroke="rgba(232,99,26,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="26" y="25" width="48" height="4" rx="2" fill="rgba(232,99,26,0.22)"/>
+              <rect x="26" y="31" width="32" height="2.5" rx="1.25" fill="rgba(232,99,26,0.12)"/>
+              <!-- Row 3 -->
+              <circle class="check-circle" cx="12" cy="46" r="7" fill="rgba(232,99,26,0.12)" stroke="rgba(232,99,26,0.4)" stroke-width="1"/>
+              <polyline class="check-item" points="8,46 11,49 17,43" fill="none" stroke="rgba(232,99,26,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="26" y="43" width="52" height="4" rx="2" fill="rgba(232,99,26,0.22)"/>
+              <rect x="26" y="49" width="42" height="2.5" rx="1.25" fill="rgba(232,99,26,0.12)"/>
+            </svg>
+          </div>
+          <h3 class="tech-feature__title">Digital Checklists &amp; Audit Trails</h3>
+          <p class="tech-feature__desc">Every operation follows structured digital checklists with mandatory sign-offs at each stage. Full audit trails maintained — giving you complete traceability from first inspection to final delivery.</p>
+        </div>
+
+      </div><!-- /.tech-features -->
+    </section>
+
+    <!-- CTA -->
+    <section class="section section--flush" style="border-top:1px solid var(--line);">
+      <div class="reveal" style="max-width:680px;">
+        <p class="section__overline">Request a Demo</p>
+        <h2 class="section__title">See it in action.</h2>
+        <p class="section__lead">
+          Contact our team to arrange a walkthrough of the Insight platform and discover
+          how real-time cargo intelligence can transform your operations.
+        </p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;">
+          <a href="contact.html"  class="btn-primary">Request a Demo →</a>
+          <a href="services.html" class="btn-ghost">Our Services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-top">
+        <nav class="footer-social" aria-label="Page links">
+          <a href="index.html">Home</a><a href="about.html">About</a>
+          <a href="services.html">Services</a><a href="contact.html">Contact</a>
+        </nav>
+        <a href="mailto:info@insightcargosolutions.co.za" style="font-family:var(--font-display);font-size:0.694rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);transition:color .25s;" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--muted)'">info@insightcargosolutions.co.za</a>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 Insight Cargo Solutions. All rights reserved.</span>
+        <nav class="footer-links"><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-use.html">Terms of Use</a></nav>
+        <p class="footer-slogan">Built on Experience. Driven by Accuracy.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="js/pages.js" defer></script>
+</body>
+</html>
