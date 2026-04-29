@@ -533,7 +533,7 @@ header {
   color: var(--orange);
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 0.694rem;
+  font-size: 0.624rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   line-height: 1;
@@ -917,7 +917,7 @@ footer {
 .section__overline {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 0.694rem;
+  font-size: 0.624rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   line-height: 1;
