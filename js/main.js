@@ -11,6 +11,7 @@
  *  6. RoutePaths        — stroke-dasharray for CSS draw-on animation
  *  7. ShipTraveller     — glowing circle travelling all route paths
  *  8. ParallaxBackground — subtle mouse movement on bg-canvas
+ *  9. BackToTop          — fixed scroll-to-top button
  */
 
 'use strict';
@@ -244,8 +245,11 @@ class DropdownItem {
   }
 
   handleTriggerClick(e) {
-    e.preventDefault();
-    this.isOpen ? this.close() : this.open();
+    if (!this.isOpen) {
+      e.preventDefault();
+      this.open();
+    }
+    // isOpen → let the link navigate to services.html normally
   }
 
   open() {
@@ -506,3 +510,25 @@ class ParallaxBackground {
 }
 
 new ParallaxBackground();
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   9. BACK TO TOP
+   ═════════════════════════════════════════════════════════════════════════════ */
+class BackToTop {
+  constructor() {
+    this.btn = document.createElement('button');
+    this.btn.className = 'back-to-top';
+    this.btn.setAttribute('aria-label', 'Back to top');
+    this.btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>`;
+    document.body.appendChild(this.btn);
+
+    window.addEventListener('scroll', () => this.onScroll(), { passive: true });
+    this.btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
+  onScroll() {
+    this.btn.classList.toggle('is-visible', window.scrollY > 100);
+  }
+}
+
+new BackToTop();

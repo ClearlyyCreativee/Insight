@@ -36,7 +36,7 @@
 
     /* ── Hero ──────────────────────────────────────────────────────────── */
     .home-hero {
-      min-height: calc(100dvh - 90px);
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -108,6 +108,17 @@
       margin-bottom: 1.5rem;
     }
     .home-about__body p:last-of-type { margin-bottom: 0; }
+    @media (max-width: 1023px) {
+      .home-about__body { text-align: center; }
+      .home-about__body div[style] { justify-content: center; display: flex; flex-wrap: wrap; gap: 1rem; }
+    }
+    @media (max-width: 767px) {
+      .services-header { flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+      .services-header div.reveal { text-align: center; width: 100%; }
+      .services-header > a { align-self: center !important; }
+      .home-why > .reveal { text-align: center; }
+      .home-tech > .reveal:first-child { text-align: center; }
+    }
 
     .about-pull {
       border-left: 3px solid var(--orange);
@@ -151,11 +162,12 @@
     /* 6-tile grid: 2-col mobile → 3-col tablet → 6-col desktop */
     .home-services-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 1px;
       background: var(--line);
       border: 1px solid var(--line);
     }
+    @media (min-width: 480px)  { .home-services-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 768px)  { .home-services-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (min-width: 1280px) { .home-services-grid { grid-template-columns: repeat(6, 1fr); } }
 
@@ -203,6 +215,8 @@
       transition: transform 0.3s var(--ease-expo), color 0.3s ease;
       position: relative; z-index: 1;
     }
+    @media (max-width: 479px) { .svc-tile__icon { text-align: center; } }
+    @media (max-width: 479px) { .svc-tile { text-align: center; } }
     .svc-tile__title {
       font-family: var(--font-display);
       font-weight: 700;
@@ -243,12 +257,13 @@
     }
     .why-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 1px;
       background: var(--line);
       border: 1px solid var(--line);
       margin-top: 3.5rem;
     }
+    @media (min-width: 480px)  { .why-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 768px)  { .why-grid { grid-template-columns: repeat(3, 1fr); } }
 
     .why-item {
@@ -276,6 +291,8 @@
       pointer-events: none;
     }
     .why-item__icon { font-size: 1.4rem; margin-bottom: 0.85rem; display: block; }
+    @media (max-width: 479px) { .why-item__icon { text-align: center; } }
+    @media (max-width: 479px) { .why-item { text-align: center; } }
     .why-item__title {
       font-family: var(--font-display);
       font-weight: 700;
@@ -322,6 +339,8 @@
       .tech-mini-item:hover { background: var(--bg-surface); }
     }
     .tech-mini-item__icon { font-size: 1.2rem; margin-bottom: 0.5rem; display: block; }
+    @media (max-width: 767px) { .tech-mini-item { text-align: center; } }
+    @media (max-width: 767px) { .tech-mini-item__icon { text-align: center; } }
     .tech-mini-item__label {
       font-family: var(--font-display);
       font-weight: 600;
@@ -548,7 +567,7 @@
           <p class="stat__desc">Operational Support</p>
         </div>
         <div class="stat reveal" data-delay="3">
-          <span class="stat__num">All Major SA Ports</span>
+          <span class="stat__num">All major SA Ports</span>
           <p class="stat__desc">National Coverage</p>
         </div>
       </section>
@@ -618,42 +637,42 @@
 
         <div class="home-services-grid reveal" data-delay="2">
 
-          <a href="services.html#container-reefer" class="svc-tile">
+          <a href="container-reefer.html" class="svc-tile">
             <span class="svc-tile__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 21l1.65-4.71A3 3 0 0 1 6.49 14.5h11.02a3 3 0 0 1 2.84 1.79L22 21"/><path d="M4 9h16l-1.5 5H5.5L4 9z"/><path d="M9 9V5h6v4"/><path d="M12 5V3"/></svg></span>
             <h3 class="svc-tile__title">Container &amp; Reefer Cargo</h3>
             <p class="svc-tile__desc">Pre-operation inspections, temperature &amp; seal verification, live dashboards.</p>
             <span class="svc-tile__arrow">Learn more →</span>
           </a>
 
-          <a href="services.html#break-bulk" class="svc-tile">
+          <a href="break-bulk.html" class="svc-tile">
             <span class="svc-tile__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>
             <h3 class="svc-tile__title">Break Bulk &amp; Project Cargo</h3>
             <p class="svc-tile__desc">Serial number tracking, damage inspections, handling &amp; lashing oversight.</p>
             <span class="svc-tile__arrow">Learn more →</span>
           </a>
 
-          <a href="services.html#dry-bulk" class="svc-tile">
+          <a href="dry-bulk.html" class="svc-tile">
             <span class="svc-tile__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/></svg></span>
             <h3 class="svc-tile__title">Dry Bulk Cargo</h3>
             <p class="svc-tile__desc">Quayside traffic management, productivity adherence, real-time SITREPs.</p>
             <span class="svc-tile__arrow">Learn more →</span>
           </a>
 
-          <a href="services.html#steel-coils" class="svc-tile">
+          <a href="steel-coils.html" class="svc-tile">
             <span class="svc-tile__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg></span>
             <h3 class="svc-tile__title">Steel, Coils &amp; Bagged</h3>
             <p class="svc-tile__desc">Unit-by-unit tracking, condition inspections with photos, live capturing.</p>
             <span class="svc-tile__arrow">Learn more →</span>
           </a>
 
-          <a href="services.html#roro" class="svc-tile">
+          <a href="roro.html" class="svc-tile">
             <span class="svc-tile__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l4 6v6a2 2 0 0 1-2 2h-1"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg></span>
             <h3 class="svc-tile__title">Ro-Ro Vehicle Inspections</h3>
             <p class="svc-tile__desc">Full-surface damage mapping, photo-verified reports, digital stow plans.</p>
             <span class="svc-tile__arrow">Learn more →</span>
           </a>
 
-          <a href="services.html#inspections" class="svc-tile">
+          <a href="inspections.html" class="svc-tile">
             <span class="svc-tile__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
             <h3 class="svc-tile__title">Inspections, Surveys &amp; Tally</h3>
             <p class="svc-tile__desc">Pre/on/off-hire surveys, damage reporting, independent verification.</p>
