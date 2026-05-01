@@ -7,8 +7,12 @@
   <meta name="description" content="Terms of use governing access to and use of the Insight Cargo Solutions website." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.insightcargosolutions.com/terms-of-use.html" />
+  <meta property="og:title"       content="Terms of Use – Insight Cargo Solutions" />
+  <meta property="og:description" content="Terms of use governing access to and use of the Insight Cargo Solutions website." />
+  <meta property="og:url"         content="https://www.insightcargosolutions.com/terms-of-use.html" />
+  <meta property="og:type"        content="website" />
   <meta name="theme-color" id="themeColorMeta" content="#162D33" />
-   <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -18,7 +22,20 @@
 <body>
 
   <div id="cursor" aria-hidden="true"><div class="dot"></div><div class="ring"></div></div>
+
+  <div class="bg-canvas" aria-hidden="true">
+    <svg viewBox="0 0 1440 810" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <path d="M655 200 C672 188 698 188 710 202 C722 216 722 242 715 268 C708 294 692 315 675 318 Z" fill="rgba(242,240,236,0.03)" />
+      <path d="M810 100 C860 90 940 95 980 115 C1020 135 1030 165 1010 185 Z" fill="rgba(242,240,236,0.03)" />
+      <path class="route-path" d="M672 148 Q750 185 810 190 Q870 195 940 185" fill="none" stroke="rgba(242,240,236,0.35)" stroke-width="0.7" pathLength="1" />
+      <path class="route-path" d="M990 200 Q1040 280 1092 360" fill="none" stroke="rgba(242,240,236,0.3)" stroke-width="0.6" pathLength="1" />
+      <circle class="route-node" cx="665" cy="138" r="3" fill="rgba(242,240,236,0.7)" />
+      <circle class="route-node" cx="1010" cy="185" r="3" fill="rgba(232,99,26,0.85)" />
+      <line x1="0" y1="405" x2="1440" y2="405" stroke="rgba(242,240,236,0.04)" stroke-width="0.5"/>
+    </svg>
+  </div>
   <div class="bg-noise" aria-hidden="true"></div>
+  <div class="accent-bar" aria-hidden="true"></div>
 
   <div id="app" class="page">
 
@@ -34,7 +51,17 @@
         <nav class="nav-desktop" aria-label="Primary navigation">
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
-          <a href="services.html">Services</a>
+          <span class="nav-item--has-dropdown">
+            <a href="services.html">Services</a>
+            <div class="nav-dropdown" role="menu">
+              <a href="container-reefer.html" role="menuitem">Container &amp; Reefer Cargo</a>
+              <a href="break-bulk.html"       role="menuitem">Break Bulk &amp; Project Cargo</a>
+              <a href="dry-bulk.html"         role="menuitem">Dry Bulk Cargo</a>
+              <a href="steel-coils.html"      role="menuitem">Steel, Coils &amp; Bagged Cargo</a>
+              <a href="roro.html"             role="menuitem">Ro-Ro Vehicle Inspections</a>
+              <a href="inspections.html"      role="menuitem">Inspections, Surveys &amp; Tally</a>
+            </div>
+          </span>
           <a href="technology.html">Technology</a>
           <a href="team.html">Team</a>
           <a href="contact.html">Contact</a>
@@ -68,10 +95,10 @@
         <p>Welcome to the website of Insight Cargo Solutions ("we", "us", or "our"). These Terms of Use ("Terms") govern your access to and use of <strong>insightcargosolutions.com</strong> (the "Website"). By accessing or using the Website, you agree to be bound by these Terms.</p>
 
         <h2>1. Purpose of the Website</h2>
-        <p>The Website is provided purely for informational and visibility purposes. It displays information about our independent cargo inspection and survey services. The content is intended for general information only and does not constitute professional advice.</p>
+        <p>The Website is provided for informational and visibility purposes. It displays information about our independent cargo inspection and survey services and includes a contact form through which you may submit an enquiry. The content is intended for general information only and does not constitute professional advice.</p>
 
-        <h2>2. No Data Collection or Interaction</h2>
-        <p>This is a static informational website. We do not collect any personal information from users. There are no contact forms, sign-ups, accounts, downloads, or interactive features that require personal data submission.</p>
+        <h2>2. Contact Form & Data Submission</h2>
+        <p>The Website includes a contact form through which you may voluntarily submit your name, email address, subject, and message to reach us. This information is transmitted via a third-party service (EmailJS) and is used solely to respond to your enquiry. We do not store, sell, or share this information with any other parties. You are not required to submit any information to browse the Website.</p>
 
         <h2>3. Intellectual Property</h2>
         <p>All content on the Website — including text, images, logos, and graphics — is the property of Insight Cargo Solutions or its licensors and is protected by South African and international copyright and trademark laws.</p>
@@ -104,7 +131,7 @@
         <p>
           <strong>Insight Cargo Solutions</strong><br>
           Cape Town, Western Cape, South Africa<br>
-          Email: <a href="mailto:vorster.desmond.dv@gmail.com" style="color:var(--orange);">vorster.desmond.dv@gmail.com</a>
+          Email: <a href="mailto:inquiries@insightcargosolutions.com" style="color:var(--orange);">inquiries@insightcargosolutions.com</a>
         </p>
       </div>
     </main>
@@ -118,13 +145,12 @@
           <a href="services.html">Services</a>
           <a href="contact.html">Contact</a>
         </nav>
+        <a href="mailto:inquiries@insightcargosolutions.com" style="font-family:var(--font-display);font-size:0.694rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);transition:color .25s;" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--muted)'">inquiries@insightcargosolutions.com</a>
       </div>
       <div class="footer-bottom">
         <span class="footer-copy">© 2026 Insight Cargo Solutions. All rights reserved.</span>
-        <nav class="footer-links" aria-label="Legal links">
-          <a href="privacy-policy.html">Privacy Policy</a>
-          <a href="terms-of-use.html">Terms of Use</a>
-        </nav>
+        <nav class="footer-links"><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-use.html">Terms of Use</a></nav>
+        <p class="footer-slogan">Built on Experience. Driven by Accuracy.</p>
       </div>
     </footer>
 
