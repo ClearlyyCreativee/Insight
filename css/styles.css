@@ -820,6 +820,16 @@ footer {
 }
 .footer-social a:hover { color: var(--orange); }
 
+.footer-email {
+  font-family: var(--font-display);
+  font-size: 0.694rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.25s;
+}
+.footer-email:hover { color: var(--orange); }
+
 .footer-bottom {
   display: flex;
   flex-direction: column;
@@ -860,6 +870,64 @@ footer {
   text-transform: uppercase;
   color: var(--text);
 }
+
+/* ── Service Page Components ─────────────────────────────────────────────── */
+.section--border-top { border-top: 1px solid var(--line); }
+
+.reveal--centered { max-width: 680px; margin-left: auto; margin-right: auto; }
+
+.check-list {
+  list-style: none;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.check-list__item { display: flex; gap: 1rem; }
+.check-list__icon {
+  color: var(--orange);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.check-list__text { font-size: 0.938rem; line-height: 1.65; }
+
+.download-card {
+  padding: 2.5rem;
+  text-align: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--line);
+  margin-top: 2rem;
+}
+.download-card__icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+.download-card__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+.download-card__desc {
+  font-weight: 300;
+  color: var(--muted);
+  margin-bottom: 1.75rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.download-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.download-grid .download-card { margin-top: 0; }
+
+.cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
 
 /* ── Back to Top ──────────────────────────────────────────────────────────── */
 .back-to-top {
@@ -1349,6 +1417,7 @@ footer {
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
+  margin-top: 3rem;
 }
 @media (min-width: 768px)  { .benefits-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 1024px) { .benefits-grid { grid-template-columns: repeat(6, 1fr); } }
