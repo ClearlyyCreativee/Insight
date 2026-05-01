@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
@@ -12,7 +12,8 @@
   <meta property="og:url"         content="https://www.insightcargosolutions.com/dry-bulk.html" />
   <meta property="og:type"        content="website" />
   <meta name="theme-color" id="themeColorMeta" content="#162D33" />
-   <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+   
+  <link rel="apple-touch-icon" href="assets/img/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -20,6 +21,8 @@
   <script>(function(){var t=localStorage.getItem('insight-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
 </head>
 <body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <div id="cursor" aria-hidden="true"><div class="dot"></div><div class="ring"></div></div>
 
@@ -43,8 +46,8 @@
     <header>
       <div class="logo-zone">
         <a href="index.html" class="logo-link" aria-label="Insight Cargo Solutions — Home">
-          <img src="assets/img/Logo-White.svg" alt="Insight Cargo Solutions" class="logo-dark-mode" />
-          <img src="assets/img/Logo-Dark.svg"  alt="Insight Cargo Solutions" class="logo-light-mode" />
+          <img src="assets/img/Logo-White.svg" alt="Insight Cargo Solutions" width="680" height="214" class="logo-dark-mode" />
+          <img src="assets/img/Logo-Dark.svg"  alt="Insight Cargo Solutions" width="680" height="214" class="logo-light-mode" />
         </a>
       </div>
       <div class="header-right">
@@ -85,6 +88,8 @@
       <a href="team.html"       data-nav-link>Team</a>
       <a href="contact.html"    data-nav-link>Contact</a>
     </nav>
+    <main id="main-content">
+
 
     <!-- PAGE HERO -->
     <section class="page-hero">
@@ -151,18 +156,31 @@
       </div>
     </section>
 
-    <!-- DOWNLOAD GUIDE -->
+    <!-- DOWNLOAD GUIDES -->
     <section class="section" aria-labelledby="resources-heading">
       <p class="section__overline reveal">Resources</p>
-      <h2 id="resources-heading" class="section__title reveal" data-delay="1">Download Our Service Guide</h2>
+      <h2 id="resources-heading" class="section__title reveal" data-delay="1">Download Our Service Guides</h2>
 
-      <div class="card reveal" data-delay="2" style="padding: 2.5rem; text-align: center; background: var(--bg-surface); border: 1px solid var(--line); margin-top: 2rem;">
-        <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">📄</span>
-        <h3 style="font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; color: var(--text);">Dry Bulk Cargo Service Guide</h3>
-        <p style="font-family: var(--font-body); font-weight: 300; color: var(--muted); margin-bottom: 1.75rem; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6;">
-          Get comprehensive details about our dry bulk inspection processes, quayside management, productivity oversight, and real-time reporting capabilities.
-        </p>
-        <a href="assets/downloads/Dry-Bulk-Service-Guide.pdf" download class="btn-primary" style="display: inline-block;">Download PDF →</a>
+      <div class="reveal" data-delay="2" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+
+        <div class="card" style="padding: 2.5rem; text-align: center; background: var(--bg-surface); border: 1px solid var(--line);">
+          <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">📄</span>
+          <h3 style="font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; color: var(--text);">Dry Bulk Import Guide</h3>
+          <p style="font-family: var(--font-body); font-weight: 300; color: var(--muted); margin-bottom: 1.75rem; line-height: 1.6;">
+            Quayside management, discharge oversight, productivity adherence, and warehouse receipt handling for dry bulk import operations.
+          </p>
+          <a href="assets/downloads/Dry-Bulk-Import-Guide.pdf" download class="btn-primary" style="display: inline-block;">Download PDF →</a>
+        </div>
+
+        <div class="card" style="padding: 2.5rem; text-align: center; background: var(--bg-surface); border: 1px solid var(--line);">
+          <span style="font-size: 2.5rem; margin-bottom: 1rem; display: block;">📄</span>
+          <h3 style="font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; color: var(--text);">Dry Bulk Export Guide</h3>
+          <p style="font-family: var(--font-body); font-weight: 300; color: var(--muted); margin-bottom: 1.75rem; line-height: 1.6;">
+            Load planning, vessel stow supervision, productivity monitoring, and real-time SITREP reporting for dry bulk export operations.
+          </p>
+          <a href="assets/downloads/Dry-Bulk-Export-Guide.pdf" download class="btn-primary" style="display: inline-block;">Download PDF →</a>
+        </div>
+
       </div>
     </section>
 
@@ -180,6 +198,7 @@
         </div>
       </div>
     </section>
+    </main>
 
     <!-- FOOTER -->
     <footer>

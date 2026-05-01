@@ -15,12 +15,6 @@
 'use strict';
 
 const isPointerDevice = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-/* ── Web3Forms access key ─────────────────────────────────────────────────────
-   1. Go to https://web3forms.com
-   2. Enter inquiries@insightcargosolutions.com and click "Create Access Key"
-   3. Copy the key from the email you receive and paste it below
-   ─────────────────────────────────────────────────────────────────────────── */
 const FORM_ACCESS_KEY = '0deae030-536e-4df4-a380-24d974bc5b63';
 
 /* ═════════════════════════════════════════════════════════════════════════════
