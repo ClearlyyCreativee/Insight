@@ -45,9 +45,7 @@
       position: relative;
     }
     @media (max-width: 767px) {
-      .home-hero { align-items: center; text-align: center; padding-top: 3.5rem; gap: 1.5rem; }
-      .home-hero .eyebrow  { justify-content: center; }
-      .home-hero .hero-ctas { justify-content: center; }
+      .home-hero { padding-top: 3.5rem; gap: 1.5rem; }
     }
 
     .hero-ctas {
@@ -108,16 +106,10 @@
       margin-bottom: 1.5rem;
     }
     .home-about__body p:last-of-type { margin-bottom: 0; }
-    @media (max-width: 1023px) {
-      .home-about__body { text-align: center; }
-      .home-about__body div[style] { justify-content: center; display: flex; flex-wrap: wrap; gap: 1rem; }
-    }
     @media (max-width: 767px) {
-      .services-header { flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-      .services-header div.reveal { text-align: center; width: 100%; }
-      .services-header > a { align-self: center !important; }
-      .home-why > .reveal { text-align: center; }
-      .home-tech > .reveal:first-child { text-align: center; }
+      .services-header { flex-direction: column; align-items: flex-start; justify-content: flex-start; }
+      .services-header > div { width: 100%; text-align: left; }
+      .services-header > a { align-self: flex-start !important; }
     }
 
     .about-pull {
@@ -358,10 +350,6 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 2rem;
-    }
-    @media (max-width: 767px) {
-      .home-cta { align-items: center; text-align: center; }
-      .home-cta__actions { justify-content: center; }
     }
     .home-cta__title {
       font-family: var(--font-display);

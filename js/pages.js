@@ -9,18 +9,19 @@
  *  4. MobileNav        — hamburger drawer, focus trap, ESC
  *  5. ScrollReveal     — IntersectionObserver for .reveal elements
  *  6. FaqAccordion     — contact.html
- *  7. ContactForm      — EmailJS integration
+ *  7. ContactForm      — Web3Forms integration
  */
 
 'use strict';
 
 const isPointerDevice = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-const EMAILJS_CONFIG = {
-  publicKey: 'YOUR_PUBLIC_KEY',
-  serviceId: 'YOUR_SERVICE_ID',
-  templateId: 'YOUR_TEMPLATE_ID',
-};
+/* ── Web3Forms access key ─────────────────────────────────────────────────────
+   1. Go to https://web3forms.com
+   2. Enter inquiries@insightcargosolutions.com and click "Create Access Key"
+   3. Copy the key from the email you receive and paste it below
+   ─────────────────────────────────────────────────────────────────────────── */
+const FORM_ACCESS_KEY = '0deae030-536e-4df4-a380-24d974bc5b63';
 
 /* ═════════════════════════════════════════════════════════════════════════════
    1. THEME TOGGLE
@@ -296,23 +297,28 @@ class FaqItem {
 new FaqAccordion();
 
 /* ═════════════════════════════════════════════════════════════════════════════
-   7. CONTACT FORM (EmailJS Integration)
+   7. CONTACT FORM (Web3Forms Integration)
    ═════════════════════════════════════════════════════════════════════════════ */
+const ENQUIRY_LABELS = {
+  'container-reefer': 'Container & Reefer',
+  'break-bulk':       'Break Bulk & Project Cargo',
+  'dry-bulk':         'Dry Bulk Cargo',
+  'steel-coils':      'Steel, Coils & Bagged Cargo',
+  'roro':             'Ro-Ro Vehicle Inspections',
+  'surveys':          'Inspections, Surveys & Tally',
+  'technology':       'Technology Platform Demo',
+  'careers':          'Careers',
+  'general':          'General Enquiry',
+};
+
 class ContactForm {
   constructor() {
-    this.form = document.getElementById('contactForm');
+    this.form      = document.getElementById('contactForm');
     this.submitBtn = document.getElementById('submitBtn');
     this.successEl = document.getElementById('formSuccess');
+    this.errorEl   = document.getElementById('formError');
 
     if (!this.form || !this.submitBtn) return;
-
-    this.ejsReady = typeof emailjs !== 'undefined' &&
-                    EMAILJS_CONFIG.publicKey !== 'YOUR_PUBLIC_KEY';
-
-    if (this.ejsReady) {
-      emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
-    }
-
     this.init();
   }
 
@@ -325,100 +331,98 @@ class ContactForm {
     });
   }
 
-  isValidEmail(value) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    return emailRegex.test(value.trim());
-  }
+  getField(id) { return document.getElementById(id); }
 
-  getField(id) {
-    return document.getElementById(id);
+  isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value.trim());
   }
 
   setError(el, show) {
     if (!el) return;
-    show
-      ? el.setAttribute('aria-invalid', 'true')
-      : el.removeAttribute('aria-invalid');
+    show ? el.setAttribute('aria-invalid', 'true') : el.removeAttribute('aria-invalid');
   }
 
-  clearError(el) {
-    this.setError(el, false);
-  }
+  clearError(el) { this.setError(el, false); }
 
   validate() {
-    const name = this.getField('contactName');
-    const email = this.getField('contactEmail');
+    const name    = this.getField('contactName');
+    const email   = this.getField('contactEmail');
     const message = this.getField('contactMessage');
+    let valid = true;
 
-    let isValid = true;
+    if (!name?.value.trim())                       { this.setError(name,    true);  valid = false; } else { this.setError(name,    false); }
+    if (!this.isValidEmail(email?.value ?? ''))    { this.setError(email,   true);  valid = false; } else { this.setError(email,   false); }
+    if (!message?.value.trim())                    { this.setError(message, true);  valid = false; } else { this.setError(message, false); }
 
-    if (!name?.value.trim()) {
-      this.setError(name, true);
-      isValid = false;
-    } else {
-      this.setError(name, false);
-    }
-
-    if (!this.isValidEmail(email?.value ?? '')) {
-      this.setError(email, true);
-      isValid = false;
-    } else {
-      this.setError(email, false);
-    }
-
-    if (!message?.value.trim()) {
-      this.setError(message, true);
-      isValid = false;
-    } else {
-      this.setError(message, false);
-    }
-
-    return isValid;
+    return valid;
   }
 
   setLoading(loading) {
-    this.submitBtn.disabled = loading;
+    this.submitBtn.disabled    = loading;
     this.submitBtn.textContent = loading ? 'Sending…' : 'Send Message →';
     this.submitBtn.style.opacity = loading ? '0.65' : '1';
   }
 
-  async sendEmail(data) {
-    if (!this.ejsReady) {
-      console.warn(
-        '[Insight Cargo] EmailJS not configured.\n' +
-        'Fill in EMAILJS_CONFIG in js/pages.js.\n' +
-        'https://www.emailjs.com'
-      );
-      return;
+  async sendForm(data) {
+    if (FORM_ACCESS_KEY === 'YOUR_WEB3FORMS_KEY') {
+      console.warn('[Insight Cargo] Form not configured. Get a free key at https://web3forms.com');
+      throw new Error('not-configured');
     }
 
-    return emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, data);
+    const enquiryLabel = ENQUIRY_LABELS[data.enquiry_type] || 'General Enquiry';
+
+    const body = [
+      `Name:          ${data.from_name}`,
+      `Email:         ${data.reply_to}`,
+      `Enquiry Type:  ${enquiryLabel}`,
+      `Subject:       ${data.subject || '—'}`,
+      ``,
+      `Message:`,
+      data.message,
+    ].join('\n');
+
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: FORM_ACCESS_KEY,
+        subject:    `[Insight Cargo] ${enquiryLabel} Enquiry — ${data.from_name}`,
+        from_name:  'Insight Cargo Solutions Website',
+        email:      data.reply_to,
+        message:    body,
+        botcheck:   false,
+      }),
+    });
+
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    if (!json.success) throw new Error(json.message || 'Send failed');
+    return json;
   }
 
   async handleSubmit(e) {
     e.preventDefault();
-
     if (!this.validate()) return;
 
     const data = {
-      from_name: this.getField('contactName')?.value.trim() ?? '',
-      to_email: this.getField('contactEmail')?.value.trim() ?? '',
-      reply_to: this.getField('contactEmail')?.value.trim() ?? '',
-      subject: this.getField('contactSubject')?.value.trim() ?? 'General Enquiry',
-      enquiry_type: this.getField('contactType')?.value ?? '',
-      message: this.getField('contactMessage')?.value.trim() ?? '',
+      from_name:    this.getField('contactName')?.value.trim()    ?? '',
+      reply_to:     this.getField('contactEmail')?.value.trim()   ?? '',
+      subject:      this.getField('contactSubject')?.value.trim() ?? '',
+      enquiry_type: this.getField('contactType')?.value           ?? '',
+      message:      this.getField('contactMessage')?.value.trim() ?? '',
     };
 
     this.setLoading(true);
+    this.errorEl?.classList.remove('is-visible');
 
     try {
-      await this.sendEmail(data);
-      this.form.style.opacity = '0.35';
+      await this.sendForm(data);
+      this.form.style.opacity      = '0.35';
       this.form.style.pointerEvents = 'none';
       this.successEl?.classList.add('is-visible');
-    } catch (error) {
-      console.error('[Insight Cargo] EmailJS error:', error);
-      this.successEl?.classList.add('is-visible');
+    } catch (err) {
+      console.error('[Insight Cargo] Send error:', err);
+      this.errorEl?.classList.add('is-visible');
     } finally {
       this.setLoading(false);
     }

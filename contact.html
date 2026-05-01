@@ -150,8 +150,14 @@
             <div class="form-success" id="formSuccess" role="status" aria-live="polite">
               <span class="form-success__icon">✓</span>
               <div class="form-success__text">
-                Message received. A confirmation has been sent to your email.<br>
-                We respond within one business day.
+                Message received. We'll be in touch within one business day.
+              </div>
+            </div>
+
+            <div class="form-send-error" id="formError" role="alert" aria-live="assertive">
+              <span class="form-send-error__icon">!</span>
+              <div class="form-send-error__text">
+                Something went wrong — please try again or email us directly at <a href="mailto:inquiries@insightcargosolutions.com">inquiries@insightcargosolutions.com</a>
               </div>
             </div>
 
@@ -277,7 +283,6 @@
 
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="js/pages.js" defer></script>
 </body>
 </html>
