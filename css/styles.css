@@ -1222,7 +1222,12 @@ footer {
   gap: 3rem;
 }
 @media (min-width: 1024px) {
-  .story-grid { grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .story-grid { grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+}
+
+.story-body {
+  max-width: 680px;
+  margin-inline: auto;
 }
 
 .story-body p {
