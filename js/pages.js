@@ -297,12 +297,22 @@ const ENQUIRY_LABELS = {
   'container-reefer': 'Container & Reefer',
   'break-bulk':       'Break Bulk & Project Cargo',
   'dry-bulk':         'Dry Bulk Cargo',
-  'steel-coils':      'Steel, Coils & Bagged Cargo',
+  'steel-coils':      'Steel Coils',
+  'bagged-cargo':     'Bagged Cargo',
   'roro':             'Ro-Ro Vehicle Inspections',
   'surveys':          'Inspections, Surveys & Tally',
   'technology':       'Technology Platform Demo',
   'careers':          'Careers',
   'general':          'General Enquiry',
+};
+
+const REGION_LABELS = {
+  'cape-town':    'Cape Town',
+  'durban':       'Durban',
+  'richards-bay': 'Richards Bay',
+  'gqeberha':     'Gqeberha',
+  'east-london':  'East London',
+  'saldanha-bay': 'Saldanha Bay',
 };
 
 class ContactForm {
@@ -364,12 +374,13 @@ class ContactForm {
     }
 
     const enquiryLabel = ENQUIRY_LABELS[data.enquiry_type] || 'General Enquiry';
+    const regionLabel  = REGION_LABELS[data.region]        || '—';
 
     const body = [
       `Name:          ${data.from_name}`,
       `Email:         ${data.reply_to}`,
+      `Region / Port: ${regionLabel}`,
       `Enquiry Type:  ${enquiryLabel}`,
-      `Subject:       ${data.subject || '—'}`,
       ``,
       `Message:`,
       data.message,
@@ -399,10 +410,10 @@ class ContactForm {
     if (!this.validate()) return;
 
     const data = {
-      from_name:    this.getField('contactName')?.value.trim()    ?? '',
-      reply_to:     this.getField('contactEmail')?.value.trim()   ?? '',
-      subject:      this.getField('contactSubject')?.value.trim() ?? '',
-      enquiry_type: this.getField('contactType')?.value           ?? '',
+      from_name:    this.getField('contactName')?.value.trim()  ?? '',
+      reply_to:     this.getField('contactEmail')?.value.trim() ?? '',
+      region:       this.getField('contactRegion')?.value       ?? '',
+      enquiry_type: this.getField('contactType')?.value         ?? '',
       message:      this.getField('contactMessage')?.value.trim() ?? '',
     };
 

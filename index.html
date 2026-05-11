@@ -163,6 +163,7 @@
     }
     @media (min-width: 480px)  { .home-services-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 768px)  { .home-services-grid { grid-template-columns: repeat(4, 1fr); } }
+    .home-services-grid::after { content: ''; background: var(--bg-mid); }
 
     .svc-tile {
       padding: 2rem 1.5rem;
