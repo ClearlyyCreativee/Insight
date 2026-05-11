@@ -59,7 +59,8 @@
               <a href="container-reefer.html" role="menuitem">Container &amp; Reefer Cargo</a>
               <a href="break-bulk.html"       role="menuitem">Break Bulk &amp; Project Cargo</a>
               <a href="dry-bulk.html"         role="menuitem">Dry Bulk Cargo</a>
-              <a href="steel-coils.html"      role="menuitem">Steel, Coils &amp; Bagged Cargo</a>
+              <a href="steel-coils.html"      role="menuitem">Steel Coils</a>
+              <a href="bagged-cargo.html"      role="menuitem">Bagged Cargo</a>
               <a href="roro.html"             role="menuitem">Ro-Ro Vehicle Inspections</a>
               <a href="inspections.html"      role="menuitem">Inspections, Surveys &amp; Tally</a>
             </div>
@@ -124,8 +125,16 @@
 
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label" for="contactSubject">Subject</label>
-                <input class="form-input" id="contactSubject" type="text" name="subject" placeholder="Cargo inspection request" autocomplete="off" />
+                <label class="form-label" for="contactRegion">Region / Port</label>
+                <select class="form-select" id="contactRegion" name="region" aria-label="Select region or port">
+                  <option value="">Select a port</option>
+                  <option value="cape-town">Cape Town</option>
+                  <option value="durban">Durban</option>
+                  <option value="richards-bay">Richards Bay</option>
+                  <option value="gqeberha">Gqeberha</option>
+                  <option value="east-london">East London</option>
+                  <option value="saldanha-bay">Saldanha Bay</option>
+                </select>
               </div>
               <div class="form-group">
                 <label class="form-label" for="contactType">Enquiry Type</label>
@@ -134,7 +143,8 @@
                   <option value="container-reefer">Container &amp; Reefer</option>
                   <option value="break-bulk">Break Bulk &amp; Project Cargo</option>
                   <option value="dry-bulk">Dry Bulk Cargo</option>
-                  <option value="steel-coils">Steel, Coils &amp; Bagged Cargo</option>
+                  <option value="steel-coils">Steel Coils</option>
+                  <option value="bagged-cargo">Bagged Cargo</option>
                   <option value="roro">Ro-Ro Vehicle Inspections</option>
                   <option value="surveys">Inspections, Surveys &amp; Tally</option>
                   <option value="technology">Technology Platform Demo</option>
@@ -200,7 +210,7 @@
             <span class="contact-detail__label">◆ Ports We Cover</span>
             <p class="contact-detail__value">
               Cape Town · Durban · Richards Bay<br>
-              Port Elizabeth · East London · Saldanha Bay
+              Gqeberha · East London · Saldanha Bay
             </p>
           </div>
 
@@ -231,7 +241,7 @@
             <span class="faq-question__icon" aria-hidden="true">+</span>
           </button>
           <div class="faq-answer" id="faq2" aria-hidden="true">
-            <p class="faq-answer__text">We operate across all major South African ports: Cape Town, Durban, Richards Bay, Port Elizabeth (Gqeberha), East London, and Saldanha Bay. Our teams are permanently positioned at key ports for rapid mobilisation.</p>
+            <p class="faq-answer__text">We operate across all major South African ports: Cape Town, Durban, Richards Bay, Gqeberha (Gqeberha), East London, and Saldanha Bay. Our teams are permanently positioned at key ports for rapid mobilisation.</p>
           </div>
         </div>
 
