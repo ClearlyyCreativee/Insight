@@ -470,12 +470,12 @@ header {
 .nav-mobile.is-open a {
   animation: navItemIn 0.45s var(--ease-expo) forwards;
 }
-.nav-mobile.is-open a:nth-child(1) { animation-delay: 0.05s; }
-.nav-mobile.is-open a:nth-child(2) { animation-delay: 0.10s; }
-.nav-mobile.is-open a:nth-child(3) { animation-delay: 0.15s; }
-.nav-mobile.is-open a:nth-child(4) { animation-delay: 0.20s; }
-.nav-mobile.is-open a:nth-child(5) { animation-delay: 0.25s; }
-.nav-mobile.is-open a:nth-child(6) { animation-delay: 0.30s; }
+.nav-mobile.is-open a:nth-child(2) { animation-delay: 0.05s; }
+.nav-mobile.is-open a:nth-child(3) { animation-delay: 0.10s; }
+.nav-mobile.is-open a:nth-child(4) { animation-delay: 0.15s; }
+.nav-mobile.is-open a:nth-child(5) { animation-delay: 0.20s; }
+.nav-mobile.is-open a:nth-child(6) { animation-delay: 0.25s; }
+.nav-mobile.is-open a:nth-child(7) { animation-delay: 0.30s; }
 
 .nav-mobile__close {
   position: absolute; top: 1.25rem; right: var(--pad);
@@ -1138,6 +1138,7 @@ footer {
 .reveal[data-delay="4"] { transition-delay: 0.4s; }
 .reveal[data-delay="5"] { transition-delay: 0.5s; }
 .reveal[data-delay="6"] { transition-delay: 0.6s; }
+.reveal[data-delay="7"] { transition-delay: 0.7s; }
 
 /* ─────────────────────────────────────────────────────────────────────────────
    CARD BASE
@@ -1393,6 +1394,7 @@ footer {
   height: 200px;
   overflow: hidden;
   flex-shrink: 0;
+  background: var(--bg-mid);
 }
 .service-card__cover img {
   width: 100%;
@@ -1699,8 +1701,35 @@ footer {
 }
 .team-grid--featured { grid-template-columns: 1fr; margin-bottom: 1.5rem; }
 @media (min-width: 640px)  { .team-grid--featured { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .team-grid--featured { max-width: 75%; margin-left: auto; margin-right: auto; } }
 .team-card--featured .team-card__img-wrap { aspect-ratio: 4/3; }
 .team-card--featured .team-card__name     { font-size: 1.5rem; }
+.team-card__contact {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.694rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  margin-top: 0.85rem;
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+.team-card__contact::after {
+  content: ' →';
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .team-card__contact:hover               { color: var(--orange); }
+  .team-card__contact:hover::after        { transform: translateX(4px); }
+}
+
+.team-grid--2col { grid-template-columns: 1fr; }
+@media (min-width: 640px)  { .team-grid--2col { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .team-grid--2col { grid-template-columns: repeat(2, 1fr); max-width: 75%; margin-left: auto; margin-right: auto; } }
+@media (min-width: 1280px) { .team-grid--2col { grid-template-columns: repeat(2, 1fr); } }
 
 /* ─────────────────────────────────────────────────────────────────────────────
    CONTACT PAGE
@@ -1742,8 +1771,8 @@ footer {
   border-color: rgba(232,99,26,0.6);
 }
 [data-theme="light"] .form-input,
-[data-theme="light"] .form-textarea,
-[data-theme="light"] .form-select { background: rgba(255,255,255,0.6); }
+[data-theme="light"] .form-textarea { background: rgba(255,255,255,0.6); }
+[data-theme="light"] .form-select   { background-color: rgba(255,255,255,0.6); }
 .form-input::placeholder,
 .form-textarea::placeholder   { color: var(--muted); opacity: 0.7; }
 .form-textarea                { min-height: 140px; resize: vertical; }
@@ -1755,6 +1784,10 @@ footer {
   cursor: pointer;
 }
 .form-select option { background: #162D33; color: #F2F0EC; }
+[data-theme="light"] .form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(22,45,51,0.55)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+[data-theme="light"] .form-select option { background: #F5F3EF; color: #162D33; }
 .form-input[aria-invalid="true"],
 .form-textarea[aria-invalid="true"] { border-color: rgba(232,99,26,0.8); }
 .form-error {

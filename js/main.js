@@ -14,8 +14,6 @@
  *  9. BackToTop          — fixed scroll-to-top button
  */
 
-'use strict';
-
 const isPointerDevice = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 /* ═════════════════════════════════════════════════════════════════════════════
@@ -24,29 +22,19 @@ const isPointerDevice = window.matchMedia('(hover: hover) and (pointer: fine)').
 class ThemeToggle {
   constructor() {
     this.toggle = document.getElementById('themeToggle');
-    this.root = document.documentElement;
-    this.metaColor = document.getElementById('themeColorMeta');
+    this.root   = document.documentElement;
+    this.meta   = document.getElementById('themeColorMeta');
     this.COLORS = { dark: '#162D33', light: '#F5F3EF' };
-    this.KEY = 'insight-theme';
+    this.KEY    = 'insight-theme';
 
-    if (this.toggle) this.init();
-  }
-
-  init() {
-    this.toggle.addEventListener('click', () => this.toggleTheme());
+    this.toggle?.addEventListener('click', () => this.toggleTheme());
   }
 
   applyTheme(theme) {
     this.root.setAttribute('data-theme', theme);
-    if (this.metaColor) this.metaColor.content = this.COLORS[theme];
-
-    try {
-      localStorage.setItem(this.KEY, theme);
-    } catch (e) {
-      console.warn('localStorage not available:', e);
-    }
-
-    this.toggle.setAttribute('aria-label',
+    if (this.meta) this.meta.content = this.COLORS[theme];
+    try { localStorage.setItem(this.KEY, theme); } catch (_) {}
+    this.toggle?.setAttribute('aria-label',
       theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
     );
   }
@@ -162,7 +150,7 @@ class MobileNav {
       }
     });
 
-    this.drawer.addEventListener('keydown', (e) => this.handleFocusTrap(e));
+    this.drawer.addEventListener('keydown', (e) => this.trapFocus(e));
   }
 
   openNav() {
@@ -183,22 +171,17 @@ class MobileNav {
     this.toggle.focus();
   }
 
-  handleFocusTrap(e) {
+  trapFocus(e) {
     if (e.key !== 'Tab') return;
-
     const focusable = [...this.drawer.querySelectorAll('a,button')]
       .filter((el) => el.offsetParent !== null);
-
-    if (focusable.length === 0) return;
-
-    const [first, last] = [focusable[0], focusable[focusable.length - 1]];
-
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last  = focusable.at(-1);
     if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault();
-      last.focus();
+      e.preventDefault(); last.focus();
     } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault();
-      first.focus();
+      e.preventDefault(); first.focus();
     }
   }
 }
@@ -267,9 +250,6 @@ class DropdownItem {
 
 new ServicesDropdown();
 
-
-
-
 /* ═════════════════════════════════════════════════════════════════════════════
    SCROLL REVEAL — homepage sections animate in as they enter viewport
    ═════════════════════════════════════════════════════════════════════════════ */
@@ -279,24 +259,19 @@ class ScrollReveal {
       document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'));
       return;
     }
-    this.init();
-  }
 
-  init() {
-    const observer = new IntersectionObserver(
-      (entries) => this.handleIntersection(entries),
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          this.observer.unobserve(entry.target);
+        });
+      },
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     );
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-  }
-
-  handleIntersection(entries) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-      }
-    });
+    document.querySelectorAll('.reveal').forEach((el) => this.observer.observe(el));
   }
 }
 
@@ -308,19 +283,12 @@ new ScrollReveal();
    ═════════════════════════════════════════════════════════════════════════════ */
 class RoutePaths {
   constructor() {
-    this.setup();
-  }
-
-  setup() {
-    const paths = document.querySelectorAll('.bg-canvas .route-path');
-    paths.forEach((path) => {
+    document.querySelectorAll('.bg-canvas .route-path').forEach((path) => {
       try {
         const len = path.getTotalLength();
-        path.style.strokeDasharray = len;
+        path.style.strokeDasharray  = len;
         path.style.strokeDashoffset = len;
-      } catch (e) {
-        console.debug('CSS pathLength fallback applied');
-      }
+      } catch (_) {}
     });
   }
 }
@@ -522,12 +490,11 @@ class BackToTop {
     this.btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>`;
     document.body.appendChild(this.btn);
 
-    window.addEventListener('scroll', () => this.onScroll(), { passive: true });
-    this.btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  }
+    window.addEventListener('scroll', () => {
+      this.btn.classList.toggle('is-visible', window.scrollY > 100);
+    }, { passive: true });
 
-  onScroll() {
-    this.btn.classList.toggle('is-visible', window.scrollY > 100);
+    this.btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 }
 
