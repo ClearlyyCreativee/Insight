@@ -30,12 +30,12 @@
   --ease-expo:    cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Responsive horizontal padding — increased for breathing space */
-  --pad: 1rem;
+  --pad: 1.25rem;
 }
-@media (min-width: 480px)  { :root { --pad: 1.5rem;  } }
-@media (min-width: 768px)  { :root { --pad: 3.5rem;  } }
-@media (min-width: 1024px) { :root { --pad: 6rem;    } }
-@media (min-width: 1280px) { :root { --pad: 8rem;    } }
+@media (min-width: 480px)  { :root { --pad: 2rem;   } }
+@media (min-width: 768px)  { :root { --pad: 6rem;   } }
+@media (min-width: 1024px) { :root { --pad: 11rem;  } }
+@media (min-width: 1280px) { :root { --pad: 14rem;  } }
 
 [data-theme="light"] {
   --bg:           #F5F3EF;
