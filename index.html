@@ -30,350 +30,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 
-  <style>
-    /* ═══════════════════════════════════════════════════════════════════
-       HOME PAGE — page-specific styles only
-       All base tokens, animations, components from css/styles.css
-       ═══════════════════════════════════════════════════════════════════ */
-
-    /* ── Hero ──────────────────────────────────────────────────────────── */
-    .home-hero {
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 5rem var(--pad) 4rem;
-      gap: 2rem;
-      position: relative;
-    }
-    @media (max-width: 767px) {
-      .home-hero { padding-top: 3.5rem; gap: 1.5rem; }
-    }
-
-    .hero-ctas {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.9s 1.3s var(--ease-expo) forwards;
-    }
-
-    /* Animated scroll hint — left-side vertical line */
-    .scroll-hint {
-      position: absolute;
-      bottom: 2.5rem;
-      left: var(--pad);
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      font-family: var(--font-display);
-      font-size: 0.6rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--muted);
-      opacity: 0;
-      animation: fadeIn 1s 2s var(--ease-expo) forwards;
-    }
-    .scroll-hint__line {
-      width: 1px;
-      height: 36px;
-      background: linear-gradient(to bottom, transparent, var(--orange), transparent);
-      animation: scrollPulse 2.2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { transform: scaleY(0.4); opacity: 0.5; }
-      50%       { transform: scaleY(1);   opacity: 1;   }
-    }
-    @media (max-width: 767px) { .scroll-hint { display: none; } }
-
-    /* ── About teaser ──────────────────────────────────────────────────── */
-    .home-about {
-      padding: 6rem var(--pad);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3.5rem;
-      transition: border-color 0.4s ease;
-    }
-    @media (min-width: 1024px) {
-      .home-about { grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-    }
-    .home-about__body p {
-      font-family: var(--font-body);
-      font-weight: 300;
-      font-size: clamp(1rem, 1.9vw, 1.1rem);
-      line-height: 1.85;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-    .home-about__body p:last-of-type { margin-bottom: 0; }
-    @media (max-width: 767px) {
-      .services-header { flex-direction: column; align-items: flex-start; justify-content: flex-start; }
-      .services-header > div { width: 100%; text-align: left; }
-      .services-header > a { align-self: flex-start !important; }
-    }
-
-    .about-pull {
-      border-left: 3px solid var(--orange);
-      padding: 1.75rem 2rem;
-      background: var(--orange-glow);
-    }
-    .about-pull__text {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: clamp(1.1rem, 2.5vw, 1.65rem);
-      line-height: 1.2;
-      text-transform: uppercase;
-      letter-spacing: 0.01em;
-      color: var(--text);
-      margin-bottom: 0.85rem;
-    }
-    .about-pull__attr {
-      font-family: var(--font-display);
-      font-size: 0.694rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--orange);
-    }
-
-    /* ── Services overview ─────────────────────────────────────────────── */
-    .home-services {
-      padding: 6rem var(--pad);
-      border-bottom: 1px solid var(--line);
-      background: var(--bg-mid);
-      transition: background 0.4s ease, border-color 0.4s ease;
-    }
-    .services-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 2rem;
-      margin-bottom: 3.5rem;
-      flex-wrap: wrap;
-    }
-
-    /* 7-tile grid: 1-col → 2-col → 4-col desktop */
-    .home-services-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-    }
-    @media (min-width: 480px)  { .home-services-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 768px)  { .home-services-grid { grid-template-columns: repeat(4, 1fr); } }
-    .home-services-grid::after { content: ''; background: var(--bg-mid); }
-
-    .svc-tile {
-      padding: 2rem 1.5rem;
-      background: var(--bg-mid);
-      display: block;
-      text-decoration: none;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s ease;
-    }
-    @media (min-width: 1024px) { .svc-tile { padding: 2.25rem 2rem; } }
-
-    /* Orange gradient sweep on hover */
-    .svc-tile::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, var(--orange-dim) 0%, transparent 65%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    /* Top accent line */
-    .svc-tile::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; height: 2px;
-      background: var(--orange);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s var(--ease-expo);
-      z-index: 1;
-    }
-    @media (hover: hover) and (pointer: fine) {
-      .svc-tile:hover                 { background: var(--bg-surface); }
-      .svc-tile:hover::after          { opacity: 1; }
-      .svc-tile:hover::before         { transform: scaleX(1); }
-      .svc-tile:hover .svc-tile__icon { transform: scale(1.18); color: var(--orange); }
-      .svc-tile:hover .svc-tile__arrow { opacity: 1; transform: translateX(0); }
-    }
-    .svc-tile__icon {
-      font-size: 1.65rem;
-      margin-bottom: 1rem;
-      display: block;
-      transition: transform 0.3s var(--ease-expo), color 0.3s ease;
-      position: relative; z-index: 1;
-    }
-    @media (max-width: 479px) { .svc-tile__icon { text-align: center; } }
-    @media (max-width: 479px) { .svc-tile { text-align: center; } }
-    .svc-tile__title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(0.82rem, 1.5vw, 0.95rem);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--text);
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
-      position: relative; z-index: 1;
-    }
-    .svc-tile__desc {
-      font-family: var(--font-body);
-      font-size: 0.82rem;
-      line-height: 1.6;
-      color: var(--muted);
-      position: relative; z-index: 1;
-    }
-    .svc-tile__arrow {
-      font-family: var(--font-display);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--orange);
-      display: block;
-      margin-top: 1.1rem;
-      opacity: 0;
-      transform: translateX(-6px);
-      transition: opacity 0.25s ease, transform 0.3s var(--ease-expo);
-      position: relative; z-index: 1;
-    }
-
-    /* ── Why choose us ─────────────────────────────────────────────────── */
-    .home-why {
-      padding: 6rem var(--pad);
-      border-bottom: 1px solid var(--line);
-      transition: border-color 0.4s ease;
-    }
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-      margin-top: 3.5rem;
-    }
-    @media (min-width: 480px)  { .why-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 768px)  { .why-grid { grid-template-columns: repeat(3, 1fr); } }
-
-    .why-item {
-      padding: 2.25rem 2rem;
-      background: var(--bg);
-      transition: background 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    @media (hover: hover) and (pointer: fine) {
-      .why-item:hover { background: var(--bg-surface); }
-      .why-item:hover .why-item__num { opacity: 0.22; }
-    }
-    .why-item__num {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 3.5rem;
-      color: var(--orange);
-      opacity: 0.07;
-      line-height: 1;
-      position: absolute;
-      top: 0.75rem;
-      right: 1rem;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
-    .why-item__icon { font-size: 1.4rem; margin-bottom: 0.85rem; display: block; }
-    @media (max-width: 479px) { .why-item__icon { text-align: center; } }
-    @media (max-width: 479px) { .why-item { text-align: center; } }
-    .why-item__title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-    .why-item__desc {
-      font-family: var(--font-body);
-      font-weight: 300;
-      font-size: 0.875rem;
-      line-height: 1.7;
-      color: var(--muted);
-    }
-
-    /* ── Technology teaser ─────────────────────────────────────────────── */
-    .home-tech {
-      padding: 6rem var(--pad);
-      border-bottom: 1px solid var(--line);
-      background: var(--bg-mid);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3.5rem;
-      transition: background 0.4s ease, border-color 0.4s ease;
-    }
-    @media (min-width: 1024px) {
-      .home-tech { grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-    }
-    .tech-features-mini {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-    }
-    .tech-mini-item {
-      padding: 1.5rem;
-      background: var(--bg);
-      transition: background 0.3s ease;
-    }
-    @media (hover: hover) and (pointer: fine) {
-      .tech-mini-item:hover { background: var(--bg-surface); }
-    }
-    .tech-mini-item__icon { font-size: 1.2rem; margin-bottom: 0.5rem; display: block; }
-    @media (max-width: 767px) { .tech-mini-item { text-align: center; } }
-    @media (max-width: 767px) { .tech-mini-item__icon { text-align: center; } }
-    .tech-mini-item__label {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text);
-      line-height: 1.3;
-    }
-
-    /* ── CTA Banner ────────────────────────────────────────────────────── */
-    .home-cta {
-      padding: 6rem var(--pad);
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 2rem;
-    }
-    .home-cta__title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(2.2rem, 6vw, 4.5rem);
-      text-transform: uppercase;
-      line-height: 0.94;
-      letter-spacing: -0.01em;
-      max-width: 760px;
-    }
-    .home-cta__title em { font-style: normal; -webkit-text-stroke: 1.5px var(--text); color: transparent; }
-    .home-cta__sub {
-      font-family: var(--font-body);
-      font-weight: 300;
-      font-size: clamp(1rem, 2vw, 1.1rem);
-      line-height: 1.8;
-      color: var(--muted);
-      max-width: 560px;
-    }
-    .home-cta__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-  </style>
-
   <script>
     (function () {
       var t = localStorage.getItem('insight-theme');
@@ -572,22 +228,27 @@
            ════════════════════════════════════════ -->
       <section class="home-about" id="about" aria-labelledby="about-heading">
         <div class="home-about__body reveal">
-          <p class="section__overline" style="margin-bottom:1.75rem;">Who We Are</p>
+          <p class="section__overline">Who We Are</p>
           <h2 id="about-heading" class="section__title">
             Accuracy.<br><em>Accountability.</em><br>Results.
           </h2>
           <p>
-            At Insight Cargo Solutions, we provide independent cargo solutions across all trades
-            and commodities — ensuring full transparency and confidence at every stage of the
+            At Insight Cargo Solutions, we provide <strong>independent cargo solutions</strong> across all trades
+            and commodities — ensuring <span class="accent">full transparency</span> and confidence at every stage of the
             logistics chain. With technology-driven reporting and on-the-ground expertise, we
             safeguard cargo integrity and optimise port operations.
           </p>
           <p>
-            Our reputation is built on accuracy, transparency, and results. We combine
+            Our reputation is built on <span class="accent">accuracy, transparency, and results.</span> We combine
             experienced teams, innovative technology, and a proactive approach to keep
             your operations running at peak efficiency.
           </p>
-          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;">
+          <p>
+            By combining experienced on-the-ground experts with intelligent digital technology,
+            we <strong>protect your cargo</strong>, minimise risks, and give you
+            <span class="accent">complete visibility and peace of mind</span> throughout the entire operation.
+          </p>
+          <div class="cta-actions">
             <a href="about.html" class="btn-primary">About Us →</a>
             <a href="team.html"  class="btn-ghost">Meet The Team</a>
           </div>
@@ -596,19 +257,19 @@
         <div class="reveal reveal--right" data-delay="2">
           <div class="about-pull">
             <p class="about-pull__text">
-              "To deliver precision cargo services across multiple sectors —
-              one team, total control, every port."
+              We deliver precise inspections, trustworthy quality and quantity surveys,
+              and smart real-time cargo monitoring.
             </p>
             <span class="about-pull__attr">— Insight Cargo Solutions</span>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;margin-top:1px;background:var(--line);">
-            <div style="padding:1.5rem;background:var(--bg);border-right:1px solid var(--line);">
-              <span style="font-family:var(--font-display);font-weight:600;font-size:1.9rem;color:var(--orange);display:block;line-height:1;">100+</span>
-              <span style="font-family:var(--font-display);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);">Yrs Experience</span>
+          <div class="mini-stats mini-stats--flush">
+            <div class="mini-stats__cell">
+              <span class="mini-stats__num">100+</span>
+              <span class="mini-stats__label">Yrs Experience</span>
             </div>
-            <div style="padding:1.5rem;background:var(--bg);">
-              <span style="font-family:var(--font-display);font-weight:600;font-size:1.9rem;color:var(--orange);display:block;line-height:1;">98.8%</span>
-              <span style="font-family:var(--font-display);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);">Accuracy Rate</span>
+            <div class="mini-stats__cell">
+              <span class="mini-stats__num">98.8%</span>
+              <span class="mini-stats__label">Accuracy Rate</span>
             </div>
           </div>
         </div>
@@ -621,11 +282,11 @@
         <div class="services-header">
           <div class="reveal">
             <p class="section__overline">What We Do</p>
-            <h2 id="services-heading" class="section__title" style="margin-bottom:0;">
+            <h2 id="services-heading" class="section__title mb-0">
               Seven Core<br><em>Disciplines.</em>
             </h2>
           </div>
-          <a href="services.html" class="btn-ghost reveal reveal--right" data-delay="1" style="align-self:flex-end;">
+          <a href="services.html" class="btn-ghost reveal reveal--right" data-delay="1">
             View All Services →
           </a>
         </div>
@@ -744,7 +405,7 @@
           <h2 id="tech-heading" class="section__title">
             Real-Time Cargo<br><em>Intelligence.</em>
           </h2>
-          <p style="font-family:var(--font-body);font-weight:300;font-size:1rem;line-height:1.8;color:var(--muted);max-width:500px;margin:1.5rem 0 2rem;">
+          <p class="home-tech__body">
             Our proprietary digital platform delivers live operation dashboards,
             GPS-stamped photographic evidence, and automated EDI updates —
             giving you total visibility from port to port.

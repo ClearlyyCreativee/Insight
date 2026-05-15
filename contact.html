@@ -97,7 +97,7 @@
       <h1 class="page-hero__title">Let's Protect<br>Your <em>Cargo.</em></h1>
       <p class="page-hero__sub">
         Whether you need a cargo inspection quote, a survey report, a platform demo,
-        or just have a question — our team responds within one business day.
+        or just have a question — our team <span class="accent">responds within one business day.</span>
       </p>
     </section>
 
@@ -112,12 +112,12 @@
 
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label" for="contactName">Full Name <span aria-hidden="true" style="color:var(--orange)">*</span></label>
+                <label class="form-label" for="contactName">Full Name <span class="form-label__req" aria-hidden="true">*</span></label>
                 <input class="form-input" id="contactName" type="text" name="name" placeholder="Jane Smith" autocomplete="name" aria-required="true" />
                 <span class="form-error" role="alert">Please enter your name.</span>
               </div>
               <div class="form-group">
-                <label class="form-label" for="contactEmail">Email Address <span aria-hidden="true" style="color:var(--orange)">*</span></label>
+                <label class="form-label" for="contactEmail">Email Address <span class="form-label__req" aria-hidden="true">*</span></label>
                 <input class="form-input" id="contactEmail" type="email" name="email" placeholder="jane@company.com" autocomplete="email" inputmode="email" aria-required="true" />
                 <span class="form-error" role="alert">Please enter a valid email address.</span>
               </div>
@@ -130,9 +130,9 @@
                   <option value="">Select a port</option>
                   <option value="cape-town">Cape Town</option>
                   <option value="durban">Durban</option>
-                  <option value="richards-bay">Richards Bay</option>
-                  <option value="gqeberha">Gqeberha</option>
                   <option value="east-london">East London</option>
+                  <option value="gqeberha">Gqeberha</option>
+                  <option value="richards-bay">Richards Bay</option>
                   <option value="saldanha-bay">Saldanha Bay</option>
                 </select>
               </div>
@@ -140,22 +140,22 @@
                 <label class="form-label" for="contactType">Enquiry Type</label>
                 <select class="form-select" id="contactType" name="enquiry_type" aria-label="Select enquiry type">
                   <option value="">Select a category</option>
-                  <option value="container-reefer">Container &amp; Reefer</option>
-                  <option value="break-bulk">Break Bulk &amp; Project Cargo</option>
-                  <option value="dry-bulk">Dry Bulk Cargo</option>
-                  <option value="steel-coils">Steel Coils</option>
                   <option value="bagged-cargo">Bagged Cargo</option>
-                  <option value="roro">Ro-Ro Vehicle Inspections</option>
-                  <option value="surveys">Inspections, Surveys &amp; Tally</option>
-                  <option value="technology">Technology Platform Demo</option>
+                  <option value="break-bulk">Break Bulk &amp; Project Cargo</option>
                   <option value="careers">Careers</option>
+                  <option value="container-reefer">Container &amp; Reefer</option>
+                  <option value="dry-bulk">Dry Bulk Cargo</option>
                   <option value="general">General Enquiry</option>
+                  <option value="surveys">Inspections, Surveys &amp; Tally</option>
+                  <option value="roro">Ro-Ro Vehicle Inspections</option>
+                  <option value="steel-coils">Steel Coils</option>
+                  <option value="technology">Technology Platform Demo</option>
                 </select>
               </div>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="contactMessage">Message <span aria-hidden="true" style="color:var(--orange)">*</span></label>
+              <label class="form-label" for="contactMessage">Message <span class="form-label__req" aria-hidden="true">*</span></label>
               <textarea class="form-textarea" id="contactMessage" name="message" placeholder="Tell us about your cargo, your port, and what you need from us..." aria-required="true"></textarea>
               <span class="form-error" role="alert">Please include a message.</span>
             </div>
@@ -223,7 +223,7 @@
     <section class="section section--alt">
       <p class="section__overline reveal">FAQ</p>
       <h2 class="section__title reveal" data-delay="1">Common Questions</h2>
-      <div class="faq-list reveal" data-delay="2" style="margin-top:2.5rem;max-width:720px;" role="list">
+      <div class="faq-list reveal" data-delay="2" role="list">
 
         <div class="faq-item" role="listitem">
           <button class="faq-question" aria-expanded="false" aria-controls="faq1">
