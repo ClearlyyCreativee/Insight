@@ -324,17 +324,34 @@ class ContactForm {
   }
 
   prefillFromURL() {
-    const region = new URLSearchParams(window.location.search).get('region');
-    if (!region) return;
-    const select = document.getElementById('contactRegion');
-    if (!select) return;
-    if (![...select.options].some((o) => o.value === region)) return;
-    select.value = region;
-    requestAnimationFrame(() => {
+    const params  = new URLSearchParams(window.location.search);
+    const region  = params.get('region');
+    const enquiry = params.get('enquiry');
+    let   didPrefill = false;
+
+    if (region) {
+      const sel = document.getElementById('contactRegion');
+      if (sel && [...sel.options].some((o) => o.value === region)) {
+        sel.value = region;
+        didPrefill = true;
+      }
+    }
+
+    if (enquiry) {
+      const sel = document.getElementById('contactType');
+      if (sel && [...sel.options].some((o) => o.value === enquiry)) {
+        sel.value = enquiry;
+        didPrefill = true;
+      }
+    }
+
+    if (didPrefill) {
       requestAnimationFrame(() => {
-        this.form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        requestAnimationFrame(() => {
+          this.form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
       });
-    });
+    }
   }
 
   getField(id) { return document.getElementById(id); }
