@@ -2652,3 +2652,292 @@ footer {
 .mt-4 { margin-top: 4rem; }
 .mb-0 { margin-bottom: 0; }
 .link-accent { color: var(--orange); }
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   HOME REDESIGN (Nov 2026)
+   Cinematic hero · photo service tiles · interactive ports map.
+   Everything below only adds to or overrides the home page; delete this block
+   to return to the previous design.
+   ═════════════════════════════════════════════════════════════════════════════ */
+:root {
+  --map-land:  #2b5260;
+  --map-depth: #08151a;
+  --map-edge:  rgba(242,240,236,0.38);
+}
+[data-theme="light"] {
+  --map-land:  #FFFFFF;
+  --map-depth: #D3CEC4;
+  --map-edge:  rgba(22,45,51,0.2);
+}
+
+/* ── 1. Cinematic hero ─────────────────────────────────────────────────────
+   The hero always sits on a dark photo, so it keeps light text in both themes. */
+.home-hero--cinematic {
+  --text:  #F2F0EC;
+  --muted: rgba(242,240,236,0.78);
+  --line:  rgba(242,240,236,0.28);
+  color: var(--text);
+  overflow: hidden;
+  isolation: isolate;
+  background: #0f1f24;
+}
+@media (min-width: 1024px) {
+  .home-hero--cinematic { grid-template-columns: 1fr; }
+}
+.home-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.home-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% 45%;
+  transform: scale(1.1);
+  animation: heroKenBurns 22s var(--ease-expo) forwards;
+}
+@keyframes heroKenBurns { to { transform: scale(1); } }
+.home-hero--cinematic::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(15,31,36,0.94) 0%, rgba(15,31,36,0.78) 38%, rgba(15,31,36,0.2) 78%),
+    linear-gradient(0deg, rgba(15,31,36,0.9) 0%, rgba(15,31,36,0) 38%);
+}
+@media (max-width: 767px) {
+  .home-hero--cinematic::before {
+    background: linear-gradient(0deg, rgba(15,31,36,0.96) 10%, rgba(15,31,36,0.72) 60%, rgba(15,31,36,0.55) 100%);
+  }
+}
+.home-hero--cinematic .home-hero__content { max-width: calc(900px + var(--pad)); }
+.home-hero--cinematic .headline {
+  font-size: clamp(2.6rem, 6vw, 5.75rem);
+  line-height: 0.95;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.25);
+}
+.home-hero--cinematic .sub-headline { color: var(--muted); }
+.home-hero--cinematic .btn-ghost { border-color: rgba(242,240,236,0.4); }
+@media (hover: hover) and (pointer: fine) {
+  .home-hero--cinematic .btn-ghost:hover { border-color: #F2F0EC; color: #F2F0EC; }
+}
+
+/* ── 2. Photo service tiles ────────────────────────────────────────────────
+   Tiles sit on photos, so they keep light text in both themes. */
+.svc-tile--photo {
+  --text:  #F2F0EC;
+  --muted: rgba(242,240,236,0.8);
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  isolation: isolate;
+  background: #0f1f24;
+}
+@media (max-width: 479px)  { .svc-tile--photo { min-height: 230px; } }
+@media (min-width: 1024px) { .svc-tile--photo { min-height: 360px; } }
+.svc-tile__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-color: #0f1f24;
+  background-size: cover;
+  background-position: center;
+  transform: scale(var(--cover-scale, 1));
+  transition: transform 1.1s var(--ease-expo);
+}
+/* Home tiles use lighter 720px versions of the service cover photos */
+.svc-tile__media.svc-cover--container    { background-image: url('../assets/img/tile-3.jpg'); }
+.svc-tile__media.svc-cover--break-bulk   { background-image: url('../assets/img/tile-10.jpg'); }
+.svc-tile__media.svc-cover--dry-bulk     { background-image: url('../assets/img/tile-5.jpg'); }
+.svc-tile__media.svc-cover--steel-coils  { background-image: url('../assets/img/tile-2.jpg'); }
+.svc-tile__media.svc-cover--bagged-cargo { background-image: url('../assets/img/tile-7.jpg'); }
+.svc-tile__media.svc-cover--roro         { background-image: url('../assets/img/tile-6.jpg'); }
+.svc-tile__media.svc-cover--inspections  { background-image: url('../assets/img/tile-4.jpg'); }
+.svc-tile__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(15,31,36,0.97) 12%, rgba(15,31,36,0.6) 55%, rgba(15,31,36,0.18) 100%);
+  transition: background 0.5s ease;
+}
+.svc-tile--photo .svc-tile__icon  { color: #F2F0EC; margin-bottom: auto; padding-bottom: 1rem; }
+.svc-tile--photo .svc-tile__title { font-size: clamp(1rem, 1.5vw, 1.25rem); }
+.svc-tile--photo::after { z-index: -1; }
+@media (hover: hover) and (pointer: fine) {
+  .svc-tile--photo .svc-tile__desc {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.55s var(--ease-expo), opacity 0.4s ease;
+  }
+  .svc-tile--photo:hover .svc-tile__desc,
+  .svc-tile--photo:focus-visible .svc-tile__desc { max-height: 8rem; opacity: 1; }
+  .svc-tile--photo:hover .svc-tile__media,
+  .svc-tile--photo:focus-visible .svc-tile__media { transform: scale(calc(var(--cover-scale, 1) * 1.08)); }
+  .svc-tile--photo:hover .svc-tile__media::after {
+    background: linear-gradient(0deg, rgba(15,31,36,0.97) 25%, rgba(15,31,36,0.72) 70%, rgba(15,31,36,0.35) 100%);
+  }
+  .svc-tile--photo:hover { background: #0f1f24; }
+  .svc-tile--photo:focus-visible .svc-tile__arrow { opacity: 1; transform: translateX(0); }
+}
+
+/* ── 3. Interactive ports map ──────────────────────────────────────────────── */
+.home-ports {
+  padding: 6rem var(--pad);
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.4s ease;
+}
+.home-ports__intro { margin-bottom: 3.5rem; }
+.home-ports__intro .section__title { margin-bottom: 1.25rem; }
+.home-ports__lead {
+  font-weight: 300;
+  font-size: clamp(1rem, 1.9vw, 1.1rem);
+  color: var(--muted);
+  max-width: 520px;
+}
+.home-ports__layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+@media (min-width: 1024px) {
+  .home-ports__layout { grid-template-columns: minmax(260px, 340px) 1fr; gap: 4rem; align-items: center; }
+}
+
+.ports-list { border-top: 1px solid var(--line); }
+.ports-list__link {
+  display: grid;
+  grid-template-columns: 2rem 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.05rem 0.25rem;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.3s ease, padding 0.35s var(--ease-expo);
+}
+.ports-list__num {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.ports-list__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.ports-list__region {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.8rem;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+.ports-list__go {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--orange);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.25s ease, transform 0.3s var(--ease-expo);
+}
+.ports-list__link:hover,
+.ports-list__link:focus-visible,
+.ports-list__link.is-active {
+  background: linear-gradient(90deg, var(--orange-dim), transparent);
+  padding-left: 1rem;
+}
+.ports-list__link:hover .ports-list__go,
+.ports-list__link:focus-visible .ports-list__go,
+.ports-list__link.is-active .ports-list__go { opacity: 1; transform: none; }
+.ports-list__link.is-active .ports-list__num { color: var(--orange); }
+
+.ports-map {
+  position: relative;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  border: 1px solid var(--line);
+  background: radial-gradient(ellipse at 60% 40%, var(--bg-surface), var(--bg-mid) 75%);
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+.ports-map__svg { display: block; width: 100%; height: auto; overflow: visible; }
+.ports-map__depth { fill: var(--map-depth); transition: fill 0.4s ease; }
+.ports-map__land {
+  fill: var(--map-land);
+  stroke: var(--map-edge);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  transition: fill 0.4s ease;
+}
+.port-pin { cursor: pointer; outline: none; }
+.port-pin__dot {
+  fill: var(--orange);
+  stroke: var(--bg);
+  stroke-width: 4;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.3s var(--ease-expo), stroke 0.3s ease;
+}
+.port-pin__pulse {
+  fill: none;
+  stroke: var(--orange);
+  stroke-width: 3;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: portPulse 2.6s var(--ease-expo) infinite;
+}
+.port-pin:nth-of-type(2) .port-pin__pulse { animation-delay: 0.4s; }
+.port-pin:nth-of-type(3) .port-pin__pulse { animation-delay: 0.8s; }
+.port-pin:nth-of-type(4) .port-pin__pulse { animation-delay: 1.2s; }
+.port-pin:nth-of-type(5) .port-pin__pulse { animation-delay: 1.6s; }
+.port-pin:nth-of-type(6) .port-pin__pulse { animation-delay: 2.0s; }
+@keyframes portPulse {
+  0%   { transform: scale(0.45); opacity: 1; }
+  100% { transform: scale(2);    opacity: 0; }
+}
+.port-pin:hover .port-pin__dot,
+.port-pin.is-active .port-pin__dot { transform: scale(1.45); }
+.port-pin:focus-visible .port-pin__dot { transform: scale(1.45); stroke: var(--text); }
+
+.ports-map__tip {
+  position: absolute;
+  z-index: 5;
+  min-width: 210px;
+  padding: 0.85rem 1rem;
+  background: var(--bg);
+  border: 1px solid var(--orange);
+  box-shadow: 0 18px 40px var(--shadow);
+  transform: translate(-50%, calc(-100% - 20px));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.ports-map__tip.is-visible { opacity: 1; }
+.ports-map__tip-name {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.ports-map__tip-text { display: block; margin-top: 0.4rem; font-size: 0.8rem; color: var(--muted); }
+.ports-map__tip-cta {
+  display: block;
+  margin-top: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--orange);
+}

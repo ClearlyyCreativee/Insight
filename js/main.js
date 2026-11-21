@@ -499,3 +499,102 @@ class BackToTop {
 }
 
 new BackToTop();
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   10. STAT COUNTERS (home page)
+   Numbers with data-count tick up from zero when they scroll into view.
+   The final value is already in the HTML, so nothing is lost without JS
+   or with reduced motion switched on.
+   ═════════════════════════════════════════════════════════════════════════════ */
+class StatCounters {
+  constructor() {
+    this.items = document.querySelectorAll('[data-count]');
+    if (!this.items.length || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        this.observer.unobserve(entry.target);
+        this.run(entry.target);
+      });
+    }, { threshold: 0.6 });
+
+    this.items.forEach((el) => this.observer.observe(el));
+  }
+
+  run(el) {
+    const finalText = el.textContent;
+    const target    = parseFloat(el.dataset.count);
+    const decimals  = parseInt(el.dataset.decimals || '0', 10);
+    const suffix    = el.dataset.suffix || '';
+    if (Number.isNaN(target)) return;
+
+    const duration = 1600;
+    const start    = performance.now();
+    const tick = (now) => {
+      const p = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = (target * eased).toFixed(decimals) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = finalText;
+    };
+    requestAnimationFrame(tick);
+  }
+}
+
+new StatCounters();
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   11. PORTS MAP (home page)
+   Links the port list and the map pins: hovering or focusing either one
+   highlights both and shows a label on the map. Every port is a normal link
+   to contact.html?region=…, which pre-fills the contact form, so the section
+   works fully without JavaScript.
+   ═════════════════════════════════════════════════════════════════════════════ */
+class PortsMap {
+  constructor() {
+    this.map = document.querySelector('.ports-map');
+    this.tip = document.getElementById('portsTip');
+    if (!this.map || !this.tip) return;
+
+    this.tipName = this.tip.querySelector('.ports-map__tip-name');
+    this.links   = document.querySelectorAll('.home-ports [data-port]');
+
+    this.links.forEach((link) => {
+      const id = link.dataset.port;
+      link.addEventListener('mouseenter', () => this.show(id));
+      link.addEventListener('focus',      () => this.show(id));
+      link.addEventListener('mouseleave', () => this.hide());
+      link.addEventListener('blur',       () => this.hide());
+    });
+  }
+
+  show(id) {
+    const pin = this.map.querySelector(`.port-pin[data-port="${id}"]`);
+    if (!pin) return;
+
+    this.links.forEach((l) => l.classList.toggle('is-active', l.dataset.port === id));
+
+    const mapBox = this.map.getBoundingClientRect();
+    const pinBox = pin.getBoundingClientRect();
+    const x = pinBox.left + pinBox.width / 2 - mapBox.left;
+    const y = pinBox.top  + pinBox.height / 2 - mapBox.top;
+
+    // Keep the label inside the map box
+    const half = this.tip.offsetWidth / 2;
+    const clampedX = Math.min(mapBox.width - half - 8, Math.max(half + 8, x));
+
+    this.tipName.textContent = pin.dataset.name;
+    this.tip.style.left = `${clampedX}px`;
+    this.tip.style.top  = `${y}px`;
+    this.tip.classList.add('is-visible');
+  }
+
+  hide() {
+    this.links.forEach((l) => l.classList.remove('is-active'));
+    this.tip.classList.remove('is-visible');
+  }
+}
+
+new PortsMap();

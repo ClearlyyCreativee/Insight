@@ -228,7 +228,13 @@
       <!-- ════════════════════════════════════════
            HERO — full viewport, confident headline
            ════════════════════════════════════════ -->
-      <section class="home-hero" aria-label="Hero">
+      <section class="home-hero home-hero--cinematic" aria-label="Hero">
+
+        <div class="home-hero__media" aria-hidden="true">
+          <img src="assets/img/hero-port-1920.jpg"
+               srcset="assets/img/hero-port-1080.jpg 1080w, assets/img/hero-port-1920.jpg 1920w"
+               sizes="100vw" alt="" width="1920" height="1239" fetchpriority="high" decoding="async" />
+        </div>
 
         <div class="home-hero__content">
 
@@ -258,10 +264,6 @@
 
         </div>
 
-        <div class="home-hero__image" aria-hidden="true">
-          <img src="assets/img/Homepage_Bg.png" alt="" width="1050" height="640" />
-        </div>
-
         <div class="scroll-hint" aria-hidden="true">
           <span class="scroll-hint__line"></span>
           Scroll
@@ -274,11 +276,11 @@
            ════════════════════════════════════════ -->
       <section class="stats-strip" aria-label="Company highlights">
         <div class="stat reveal">
-          <span class="stat__num">100+</span>
+          <span class="stat__num" data-count="100" data-suffix="+">100+</span>
           <p class="stat__desc">Years Combined Experience</p>
         </div>
         <div class="stat reveal" data-delay="1">
-          <span class="stat__num">98.8%</span>
+          <span class="stat__num" data-count="98.8" data-decimals="1" data-suffix="%">98.8%</span>
           <p class="stat__desc">Cargo Accuracy Rate</p>
         </div>
         <div class="stat reveal" data-delay="2">
@@ -344,7 +346,7 @@
       </section>
 
       <!-- ════════════════════════════════════════
-           SERVICES OVERVIEW — 6 interactive tiles
+           SERVICES OVERVIEW — 7 photo tiles
            ════════════════════════════════════════ -->
       <section class="home-services" aria-labelledby="services-heading">
         <div class="services-header">
@@ -361,55 +363,147 @@
 
         <div class="home-services-grid reveal" data-delay="2">
 
-          <a href="container-reefer.html" class="svc-tile">
+          <a href="container-reefer.html" class="svc-tile svc-tile--photo">
+            <span class="svc-tile__media svc-cover--container" aria-hidden="true"></span>
             <span class="svc-tile__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 21l1.65-4.71A3 3 0 0 1 6.49 14.5h11.02a3 3 0 0 1 2.84 1.79L22 21"/><path d="M4 9h16l-1.5 5H5.5L4 9z"/><path d="M9 9V5h6v4"/><path d="M12 5V3"/></svg></span>
             <h3 class="svc-tile__title">Container &amp; Reefer Cargo</h3>
             <p class="svc-tile__desc">Pre-operation inspections, temperature &amp; seal verification, live dashboards.</p>
             <span class="svc-tile__arrow">Learn more →</span>
           </a>
 
-          <a href="break-bulk.html" class="svc-tile">
+          <a href="break-bulk.html" class="svc-tile svc-tile--photo">
+            <span class="svc-tile__media svc-cover--break-bulk" aria-hidden="true"></span>
             <span class="svc-tile__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>
             <h3 class="svc-tile__title">Break Bulk &amp; Project Cargo</h3>
             <p class="svc-tile__desc">Serial number tracking, damage inspections, handling &amp; lashing oversight.</p>
             <span class="svc-tile__arrow">Learn more →</span>
           </a>
 
-          <a href="dry-bulk.html" class="svc-tile">
+          <a href="dry-bulk.html" class="svc-tile svc-tile--photo">
+            <span class="svc-tile__media svc-cover--dry-bulk" aria-hidden="true"></span>
             <span class="svc-tile__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/></svg></span>
             <h3 class="svc-tile__title">Dry Bulk Cargo</h3>
             <p class="svc-tile__desc">Quayside traffic management, productivity adherence, real-time SITREPs.</p>
             <span class="svc-tile__arrow">Learn more →</span>
           </a>
 
-          <a href="steel-coils.html" class="svc-tile">
+          <a href="steel-coils.html" class="svc-tile svc-tile--photo">
+            <span class="svc-tile__media svc-cover--steel-coils" aria-hidden="true"></span>
             <span class="svc-tile__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg></span>
             <h3 class="svc-tile__title">Steel Coils</h3>
             <p class="svc-tile__desc">Unit-by-unit tracking, condition inspections with photos, live capturing.</p>
             <span class="svc-tile__arrow">Learn more →</span>
           </a>
 
-          <a href="bagged-cargo.html" class="svc-tile">
+          <a href="bagged-cargo.html" class="svc-tile svc-tile--photo">
+            <span class="svc-tile__media svc-cover--bagged-cargo" aria-hidden="true"></span>
             <span class="svc-tile__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12l2 7H4L6 2z"/><path d="M4 9v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9"/><path d="M9 15h6"/></svg></span>
             <h3 class="svc-tile__title">Bagged Cargo</h3>
             <p class="svc-tile__desc">Quantity verification, condition assessment &amp; damage reporting.</p>
             <span class="svc-tile__arrow">Learn more →</span>
           </a>
 
-          <a href="roro.html" class="svc-tile">
+          <a href="roro.html" class="svc-tile svc-tile--photo">
+            <span class="svc-tile__media svc-cover--roro" aria-hidden="true"></span>
             <span class="svc-tile__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l4 6v6a2 2 0 0 1-2 2h-1"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg></span>
             <h3 class="svc-tile__title">Ro-Ro Vehicle Inspections</h3>
             <p class="svc-tile__desc">Full-surface damage mapping, photo-verified reports, digital stow plans.</p>
             <span class="svc-tile__arrow">Learn more →</span>
           </a>
 
-          <a href="inspections.html" class="svc-tile">
+          <a href="inspections.html" class="svc-tile svc-tile--photo">
+            <span class="svc-tile__media svc-cover--inspections" aria-hidden="true"></span>
             <span class="svc-tile__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
             <h3 class="svc-tile__title">Inspections, Surveys &amp; Tally</h3>
             <p class="svc-tile__desc">Pre/on/off-hire surveys, damage reporting, independent verification.</p>
             <span class="svc-tile__arrow">Learn more →</span>
           </a>
 
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════
+           PORTS — interactive map, links pre-fill the contact form
+           ════════════════════════════════════════ -->
+      <section class="home-ports" id="ports" aria-labelledby="ports-heading">
+        <div class="home-ports__intro reveal">
+          <p class="section__overline">Where We Work</p>
+          <h2 id="ports-heading" class="section__title">
+            On the Quay at<br><em>Every Major Port.</em>
+          </h2>
+          <p class="home-ports__lead">Choose your port to start a quote. We&rsquo;ll take it from there.</p>
+        </div>
+
+        <div class="home-ports__layout">
+          <ol class="ports-list reveal" data-delay="1">
+            <li><a class="ports-list__link" href="contact.html?region=saldanha-bay" data-port="saldanha-bay">
+              <span class="ports-list__num">01</span>
+              <span class="ports-list__name">Saldanha Bay<span class="ports-list__region">Western Cape</span></span>
+              <span class="ports-list__go" aria-hidden="true">Quote →</span>
+            </a></li>
+            <li><a class="ports-list__link" href="contact.html?region=cape-town" data-port="cape-town">
+              <span class="ports-list__num">02</span>
+              <span class="ports-list__name">Cape Town<span class="ports-list__region">Western Cape</span></span>
+              <span class="ports-list__go" aria-hidden="true">Quote →</span>
+            </a></li>
+            <li><a class="ports-list__link" href="contact.html?region=gqeberha" data-port="gqeberha">
+              <span class="ports-list__num">03</span>
+              <span class="ports-list__name">Gqeberha<span class="ports-list__region">Eastern Cape</span></span>
+              <span class="ports-list__go" aria-hidden="true">Quote →</span>
+            </a></li>
+            <li><a class="ports-list__link" href="contact.html?region=east-london" data-port="east-london">
+              <span class="ports-list__num">04</span>
+              <span class="ports-list__name">East London<span class="ports-list__region">Eastern Cape</span></span>
+              <span class="ports-list__go" aria-hidden="true">Quote →</span>
+            </a></li>
+            <li><a class="ports-list__link" href="contact.html?region=durban" data-port="durban">
+              <span class="ports-list__num">05</span>
+              <span class="ports-list__name">Durban<span class="ports-list__region">KwaZulu-Natal</span></span>
+              <span class="ports-list__go" aria-hidden="true">Quote →</span>
+            </a></li>
+            <li><a class="ports-list__link" href="contact.html?region=richards-bay" data-port="richards-bay">
+              <span class="ports-list__num">06</span>
+              <span class="ports-list__name">Richards Bay<span class="ports-list__region">KwaZulu-Natal</span></span>
+              <span class="ports-list__go" aria-hidden="true">Quote →</span>
+            </a></li>
+          </ol>
+
+          <div class="ports-map reveal reveal--right" data-delay="2">
+            <svg class="ports-map__svg" viewBox="60 -16 870 660" role="group" aria-labelledby="ports-map-title">
+              <title id="ports-map-title">Map of South Africa showing the six ports we serve</title>
+              <path class="ports-map__depth" transform="translate(0 12)" d="M731 0 L745 0 L746 2 L751 2 L761 8 L767 8 L769 10 L797 7 L818 11 L833 50 L833 65 L839 71 L843 84 L849 88 L850 98 L855 107 L856 154 L854 159 L855 171 L852 176 L853 185 L846 186 L827 174 L820 175 L810 185 L803 200 L796 208 L794 224 L795 237 L799 239 L806 238 L812 244 L829 250 L852 250 L854 243 L855 226 L870 228 L898 228 L897 239 L887 263 L885 278 L882 279 L883 288 L876 301 L875 308 L870 309 L869 314 L855 326 L843 330 L821 351 L809 367 L808 374 L803 376 L803 379 L798 384 L785 407 L768 429 L749 448 L743 450 L732 460 L728 461 L702 488 L684 504 L679 506 L674 511 L664 515 L660 521 L653 526 L641 531 L608 552 L581 562 L548 560 L543 562 L537 568 L539 575 L532 576 L517 572 L507 572 L502 575 L502 578 L498 584 L491 582 L485 583 L474 578 L441 572 L427 574 L425 578 L403 578 L391 574 L383 574 L380 576 L369 576 L365 578 L363 580 L363 583 L354 585 L353 590 L348 592 L329 591 L324 594 L318 594 L315 592 L301 592 L299 596 L284 596 L268 607 L263 608 L260 613 L255 613 L249 610 L239 611 L230 604 L225 603 L225 598 L222 594 L214 594 L210 590 L199 592 L199 580 L195 577 L181 578 L179 583 L176 584 L172 572 L172 551 L172 548 L165 543 L163 537 L156 532 L156 528 L152 527 L151 510 L151 495 L153 489 L163 488 L164 486 L166 486 L167 488 L166 499 L159 509 L160 514 L164 514 L173 504 L174 484 L171 470 L163 456 L146 437 L123 400 L106 352 L100 343 L98 336 L95 334 L93 329 L88 326 L87 320 L81 315 L81 311 L84 311 L89 307 L94 307 L98 302 L96 296 L98 295 L99 291 L101 291 L103 287 L113 285 L117 288 L119 294 L124 294 L126 296 L128 303 L125 308 L127 311 L129 311 L130 317 L137 317 L140 320 L153 320 L164 327 L202 324 L209 329 L215 330 L221 327 L220 320 L229 318 L235 309 L248 307 L252 304 L257 303 L257 128 L265 133 L270 134 L276 139 L280 148 L284 152 L284 155 L290 160 L291 171 L296 176 L299 183 L299 195 L288 209 L288 221 L290 228 L294 229 L301 225 L310 228 L342 228 L345 225 L346 219 L359 217 L364 212 L366 206 L373 203 L377 198 L384 197 L389 189 L393 187 L393 181 L397 172 L398 163 L406 155 L407 152 L430 152 L438 159 L446 162 L451 168 L466 168 L473 174 L480 174 L489 178 L500 178 L506 174 L524 175 L533 170 L537 165 L542 149 L550 135 L550 126 L575 121 L590 106 L596 104 L599 101 L599 93 L605 75 L612 70 L613 67 L622 62 L631 60 L636 52 L643 52 L644 48 L652 44 L652 40 L658 36 L658 33 L661 32 L665 26 L672 21 L681 22 L694 18 L702 13 L706 4 L712 4 L715 2 L724 3 L730 2Z" />
+              <path class="ports-map__land" d="M731 0 L745 0 L746 2 L751 2 L761 8 L767 8 L769 10 L797 7 L818 11 L833 50 L833 65 L839 71 L843 84 L849 88 L850 98 L855 107 L856 154 L854 159 L855 171 L852 176 L853 185 L846 186 L827 174 L820 175 L810 185 L803 200 L796 208 L794 224 L795 237 L799 239 L806 238 L812 244 L829 250 L852 250 L854 243 L855 226 L870 228 L898 228 L897 239 L887 263 L885 278 L882 279 L883 288 L876 301 L875 308 L870 309 L869 314 L855 326 L843 330 L821 351 L809 367 L808 374 L803 376 L803 379 L798 384 L785 407 L768 429 L749 448 L743 450 L732 460 L728 461 L702 488 L684 504 L679 506 L674 511 L664 515 L660 521 L653 526 L641 531 L608 552 L581 562 L548 560 L543 562 L537 568 L539 575 L532 576 L517 572 L507 572 L502 575 L502 578 L498 584 L491 582 L485 583 L474 578 L441 572 L427 574 L425 578 L403 578 L391 574 L383 574 L380 576 L369 576 L365 578 L363 580 L363 583 L354 585 L353 590 L348 592 L329 591 L324 594 L318 594 L315 592 L301 592 L299 596 L284 596 L268 607 L263 608 L260 613 L255 613 L249 610 L239 611 L230 604 L225 603 L225 598 L222 594 L214 594 L210 590 L199 592 L199 580 L195 577 L181 578 L179 583 L176 584 L172 572 L172 551 L172 548 L165 543 L163 537 L156 532 L156 528 L152 527 L151 510 L151 495 L153 489 L163 488 L164 486 L166 486 L167 488 L166 499 L159 509 L160 514 L164 514 L173 504 L174 484 L171 470 L163 456 L146 437 L123 400 L106 352 L100 343 L98 336 L95 334 L93 329 L88 326 L87 320 L81 315 L81 311 L84 311 L89 307 L94 307 L98 302 L96 296 L98 295 L99 291 L101 291 L103 287 L113 285 L117 288 L119 294 L124 294 L126 296 L128 303 L125 308 L127 311 L129 311 L130 317 L137 317 L140 320 L153 320 L164 327 L202 324 L209 329 L215 330 L221 327 L220 320 L229 318 L235 309 L248 307 L252 304 L257 303 L257 128 L265 133 L270 134 L276 139 L280 148 L284 152 L284 155 L290 160 L291 171 L296 176 L299 183 L299 195 L288 209 L288 221 L290 228 L294 229 L301 225 L310 228 L342 228 L345 225 L346 219 L359 217 L364 212 L366 206 L373 203 L377 198 L384 197 L389 189 L393 187 L393 181 L397 172 L398 163 L406 155 L407 152 L430 152 L438 159 L446 162 L451 168 L466 168 L473 174 L480 174 L489 178 L500 178 L506 174 L524 175 L533 170 L537 165 L542 149 L550 135 L550 126 L575 121 L590 106 L596 104 L599 101 L599 93 L605 75 L612 70 L613 67 L622 62 L631 60 L636 52 L643 52 L644 48 L652 44 L652 40 L658 36 L658 33 L661 32 L665 26 L672 21 L681 22 L694 18 L702 13 L706 4 L712 4 L715 2 L724 3 L730 2Z" />
+              <a class="port-pin" href="contact.html?region=saldanha-bay" data-port="saldanha-bay" data-name="Saldanha Bay" aria-label="Saldanha Bay, Western Cape: request a quote" transform="translate(155 513)">
+                <circle class="port-pin__pulse" r="20" />
+                <circle class="port-pin__dot" r="11" />
+              </a>
+              <a class="port-pin" href="contact.html?region=cape-town" data-port="cape-town" data-name="Cape Town" aria-label="Cape Town, Western Cape: request a quote" transform="translate(180 580)">
+                <circle class="port-pin__pulse" r="20" />
+                <circle class="port-pin__dot" r="11" />
+              </a>
+              <a class="port-pin" href="contact.html?region=gqeberha" data-port="gqeberha" data-name="Gqeberha" aria-label="Gqeberha, Eastern Cape: request a quote" transform="translate(536 571)">
+                <circle class="port-pin__pulse" r="20" />
+                <circle class="port-pin__dot" r="11" />
+              </a>
+              <a class="port-pin" href="contact.html?region=east-london" data-port="east-london" data-name="East London" aria-label="East London, Eastern Cape: request a quote" transform="translate(670 507)">
+                <circle class="port-pin__pulse" r="20" />
+                <circle class="port-pin__dot" r="11" />
+              </a>
+              <a class="port-pin" href="contact.html?region=durban" data-port="durban" data-name="Durban" aria-label="Durban, KwaZulu-Natal: request a quote" transform="translate(802 374)">
+                <circle class="port-pin__pulse" r="20" />
+                <circle class="port-pin__dot" r="11" />
+              </a>
+              <a class="port-pin" href="contact.html?region=richards-bay" data-port="richards-bay" data-name="Richards Bay" aria-label="Richards Bay, KwaZulu-Natal: request a quote" transform="translate(872 300)">
+                <circle class="port-pin__pulse" r="20" />
+                <circle class="port-pin__dot" r="11" />
+              </a>
+            </svg>
+            <div class="ports-map__tip" id="portsTip" aria-hidden="true">
+              <strong class="ports-map__tip-name"></strong>
+              <span class="ports-map__tip-text">Independent inspections, surveys &amp; tally</span>
+              <span class="ports-map__tip-cta">Click to request a quote →</span>
+            </div>
+          </div>
         </div>
       </section>
 
