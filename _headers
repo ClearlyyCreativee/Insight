@@ -1,0 +1,14 @@
+# Netlify response headers — https://docs.netlify.com/routing/headers/
+#
+# Content-Security-Policy note: the two script-src hashes allow the small inline
+# "remember light/dark theme" script in each page's <head>. If you edit that
+# inline script, its hash changes and the browser will block it until the hash
+# here is updated (the browser console prints the new hash to use).
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-Lc7FPphl2Z9pv8EaphUUJ/3jKtlNVXFtV6okqYEm7bM=' 'sha256-CJHgOYGIqc/6bUbQqvzHgpymhIGaRUruKU5G8j7DuLU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests

@@ -1867,13 +1867,13 @@ footer {
 }
 
 /* Per-service cover images — transform scale zooms past built-in white borders at any screen size */
-.svc-cover--container    { background-image: url('../assets/img/3.png');  --cover-scale: 1.20; }
-.svc-cover--break-bulk   { background-image: url('../assets/img/10.png'); --cover-scale: 1.08; }
-.svc-cover--dry-bulk     { background-image: url('../assets/img/5.png');  --cover-scale: 1.08; }
-.svc-cover--steel-coils  { background-image: url('../assets/img/2.png');  --cover-scale: 1.45; }
-.svc-cover--bagged-cargo { background-image: url('../assets/img/7.png');  --cover-scale: 1.06; }
-.svc-cover--roro         { background-image: url('../assets/img/6.png');  --cover-scale: 1.08; }
-.svc-cover--inspections  { background-image: url('../assets/img/4.png');  --cover-scale: 1.20; }
+.svc-cover--container    { background-image: url('../assets/img/cover-3.jpg');  --cover-scale: 1.20; }
+.svc-cover--break-bulk   { background-image: url('../assets/img/cover-10.jpg'); --cover-scale: 1.08; }
+.svc-cover--dry-bulk     { background-image: url('../assets/img/cover-5.jpg');  --cover-scale: 1.08; }
+.svc-cover--steel-coils  { background-image: url('../assets/img/cover-2.jpg');  --cover-scale: 1.45; }
+.svc-cover--bagged-cargo { background-image: url('../assets/img/cover-7.jpg');  --cover-scale: 1.06; }
+.svc-cover--roro         { background-image: url('../assets/img/cover-6.jpg');  --cover-scale: 1.08; }
+.svc-cover--inspections  { background-image: url('../assets/img/cover-4.jpg');  --cover-scale: 1.20; }
 
 .service-card__icon {
   font-size: 1.75rem;
